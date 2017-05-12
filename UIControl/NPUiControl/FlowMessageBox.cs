@@ -75,6 +75,11 @@ namespace NPUiControl
         public static readonly DependencyProperty CornerRadiuProperty;
 
         /// <summary>
+        ///     是否自动隐藏边框和标题栏属性
+        /// </summary>
+        public static readonly DependencyProperty IsAutoHideTitleAndBorderProperty;
+
+        /// <summary>
         ///     新增信息时触发的路由事件
         /// </summary>
         public static readonly RoutedEvent MessageAddEvent;
@@ -113,6 +118,8 @@ namespace NPUiControl
             CornerRadiuProperty = DependencyProperty.Register(
                 "CornerRadiu", typeof(CornerRadius), typeof(FlowMessageBox),
                 new PropertyMetadata(default(CornerRadius)));
+            IsAutoHideTitleAndBorderProperty = DependencyProperty.Register(
+                "IsAutoHideTitleAndBorder", typeof(bool), typeof(FlowMessageBox), new PropertyMetadata(default(bool)));
 
             MessageAddEvent = EventManager.RegisterRoutedEvent("MessageAdded", RoutingStrategy.Bubble,
                 typeof(RoutedPropertyChangedEventHandler<string>), typeof(FlowMessageBox));
@@ -126,6 +133,15 @@ namespace NPUiControl
             Paragraph = new Paragraph();
             Document = new FlowDocument(Paragraph);
             Document.PagePadding = new Thickness(0, 0, 0, 0);
+        }
+
+        /// <summary>
+        ///     是否自动隐藏边框和标题
+        /// </summary>
+        public bool IsAutoHideTitleAndBorder
+        {
+            get { return (bool) GetValue(IsAutoHideTitleAndBorderProperty); }
+            set { SetValue(IsAutoHideTitleAndBorderProperty, value); }
         }
 
         /// <summary>
@@ -293,7 +309,10 @@ namespace NPUiControl
         /// <param name="message">消息内容</param>
         public void AddMessage(string message)
         {
-            AddMessage(message, Colors.Black);
+            if(Foreground is SolidColorBrush)
+                AddMessage(message, ((SolidColorBrush)Foreground).Color);
+            else
+                AddMessage(message, Colors.Black);
         }
 
         /// <summary>
@@ -389,7 +408,10 @@ namespace NPUiControl
 
             FlowDocumentScrollViewer = GetTemplateChild("PART_FlowDocumentScrollViewer") as FlowDocumentScrollViewer;
             if (FlowDocumentScrollViewer != null)
+            {
                 FlowDocumentScrollViewer.Document = Document;
+                FlowDocumentScrollViewer.SizeChanged +=new SizeChangedEventHandler(FlowDocumentScrollViewer_SizeChanged);
+            }
 
             var titleBlock = GetTemplateChild("PART_TitleBlock") as FrameworkElement;
             if (titleBlock != null)
@@ -439,6 +461,13 @@ namespace NPUiControl
                     drag.MouseLeftButtonUp += Drag_MouseLeftButtonUp;
                 }
             }
+        }
+
+        private void FlowDocumentScrollViewer_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(_isDragDropInEffect || _isResizeEffect)
+                return;
+            ScrollViewer.ScrollToEnd();
         }
 
         private void Drag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -526,6 +555,7 @@ namespace NPUiControl
                 _isResizeEffect = false;
                 if (ele != null)
                     ele.ReleaseMouseCapture();
+                ScrollViewer.ScrollToEnd();
             }
         }
     }

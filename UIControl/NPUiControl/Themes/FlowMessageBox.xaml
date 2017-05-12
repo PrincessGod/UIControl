@@ -41,7 +41,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadiu}"
                                 BorderThickness="{TemplateBinding BorderThickness}" MinHeight="100"
                                 MinWidth="100">
-                            <DockPanel Focusable="False" LastChildFill="True">
+                            <DockPanel x:Name="DockPanel" Focusable="False" LastChildFill="True">
                                 <ContentPresenter x:Name="PART_TitleBlock" DockPanel.Dock="Top"
                                                   Style="{TemplateBinding TitleStyle}" />
                                 <Grid>
@@ -61,6 +61,17 @@
                             <Setter TargetName="PART_FlowDocumentScrollViewer" Property="VerticalScrollBarVisibility"
                                     Value="Auto" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsAutoHideTitleAndBorder" Value="true"></Condition>
+                                <Condition SourceName="PART_MessageView" Property="IsMouseOver" Value="false"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_TitleBlock" Property="Visibility" Value="Collapsed"></Setter>
+                                <Setter TargetName="PART_ResizeThumb"  Property="Visibility" Value="Hidden"></Setter>
+                                <Setter TargetName="PART_MessageView"  Property="BorderBrush" Value="Transparent"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

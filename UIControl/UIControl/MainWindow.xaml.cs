@@ -30,18 +30,17 @@ namespace UIControl
             var size = 0;
             if (CheckBox1.IsChecked == true)
             {
-                color = Color.FromRgb((byte) rd.Next(256), (byte) rd.Next(256), (byte) rd.Next(256));
+                color = Color.FromRgb((byte)rd.Next(256), (byte)rd.Next(256), (byte)rd.Next(256));
             }
             if (CheckBox2.IsChecked == true)
             {
                 size = rd.Next(12, 18);
             }
 
-            if(size == 0)
+            if (size == 0)
                 FlowMessageBox1.AddMessage(rd.Next(50000).ToString("C"), color);
             else
                 FlowMessageBox1.AddMessage(rd.Next(50000).ToString("C"), color, size);
-            
         }
 
         private void FlowMessageBox1_OnMessageAdded(object sender, RoutedPropertyChangedEventArgs<string> e)
