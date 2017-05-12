@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NPUiControl</name>
+    </assembly>
+    <members>
+        <member name="T:NPUiControl.FlowMessageBox">
+            <summary>
+                流文本消息框
+                可用于动态消息提示
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.TitleProperty">
+            <summary>
+                标题属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.CanvasLeftProperty">
+            <summary>
+                消息框左边距属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.CanvasTopProperty">
+            <summary>
+                消息框上边距属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.PanelHeightProperty">
+            <summary>
+                消息框高度属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.PanelWidthProperty">
+            <summary>
+                消息框宽度属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.TitleStyleProperty">
+            <summary>
+                标题栏样式属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.ThumbStyleProperty">
+            <summary>
+                缩放Thumb样式属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.IsAnimationEnableProperty">
+            <summary>
+                当新消息产生是否开启动画强调属性 （默认开启）
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.AccentColorProperty">
+            <summary>
+                动画强调颜色属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.AccentFontSizeRatioProperty">
+            <summary>
+                动画强调字体增率属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.CornerRadiuProperty">
+            <summary>
+                圆角半径属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.MessageAddEvent">
+            <summary>
+                新增信息时触发的路由事件
+            </summary>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.#ctor">
+            <summary>
+                流式消息框
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.CornerRadiu">
+            <summary>
+                圆角半径
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.ThumbStyle">
+            <summary>
+                缩放Thumb样式
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.TitleStyle">
+            <summary>
+                标题栏样式
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.AccentFontSizeRatio">
+            <summary>
+                动画强调字体大小增幅
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.AccentColor">
+            <summary>
+                动画强调字体颜色
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.IsAnimationEnable">
+            <summary>
+                是否开始新消息动画强调
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.PanelWidth">
+            <summary>
+                消息框宽度
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.PanelHeight">
+            <summary>
+                消息框高度
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.CanvasTop">
+            <summary>
+                消息框上边距
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.CanvasLeft">
+            <summary>
+                消息框左边距
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.Title">
+            <summary>
+                消息框标题
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.ScrollViewer">
+            <summary>
+                FlowDocumentScrollViewer的ScrollViewer
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.FlowDocumentScrollViewer">
+            <summary>
+                FlowDocumentScrollViewer控件
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.Document">
+            <summary>
+                FlowDocument对象
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.Paragraph">
+            <summary>
+                Paragraph对象
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.LastBrush">
+            <summary>
+                上一个文字画刷
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.LastColor">
+            <summary>
+                上一个文字颜色
+            </summary>
+        </member>
+        <member name="E:NPUiControl.FlowMessageBox.MessageAdded">
+            <summary>
+                路由事件消息增加
+            </summary>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String)">
+            <summary>
+                添加消息
+            </summary>
+            <param name="message">消息内容</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color)">
+            <summary>
+                添加消息
+            </summary>
+            <param name="message">消息内容</param>
+            <param name="color">文字颜色</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color,System.Double)">
+            <summary>
+                添加消息
+            </summary>
+            <param name="message">消息内容</param>
+            <param name="color">文字颜色</param>
+            <param name="fontSize">字体大小</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color,System.Double,System.Windows.Media.FontFamily)">
+            <summary>
+                添加消息
+            </summary>
+            <param name="message">消息内容</param>
+            <param name="color">文字颜色</param>
+            <param name="fontSize">字体大小</param>
+            <param name="fontFamily">字体</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.ClearMessage">
+            <summary>
+                清空消息
+            </summary>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.OnApplyTemplate">
+            <summary>
+                应用模板时触发
+            </summary>
+        </member>
+        <member name="T:NPUiControl.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:NPUiControl.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的、缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:NPUiControl.Properties.Resources.Culture">
+            <summary>
+              为所有资源查找重写当前线程的 CurrentUICulture 属性，
+              方法是使用此强类型资源类。
+            </summary>
+        </member>
+    </members>
+</doc>
