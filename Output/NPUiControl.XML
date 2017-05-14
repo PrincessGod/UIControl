@@ -70,6 +70,31 @@
                 是否自动隐藏边框和标题栏属性
             </summary>
         </member>
+        <member name="F:NPUiControl.FlowMessageBox.PanelMarginProperty">
+            <summary>
+                消息框外边距属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.PanelMaxHeightProperty">
+            <summary>
+                消息框最大高度属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.PanelMaxWidthProperty">
+            <summary>
+                消息框最大宽度属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.PanelMinHeightProperty">
+            <summary>
+                消息框最小高度属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.PanelMinWidthProperty">
+            <summary>
+                消息框最小宽度属性
+            </summary>
+        </member>
         <member name="F:NPUiControl.FlowMessageBox.MessageAddEvent">
             <summary>
                 新增信息时触发的路由事件
@@ -78,6 +103,31 @@
         <member name="M:NPUiControl.FlowMessageBox.#ctor">
             <summary>
                 流式消息框
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.PanelMinWidth">
+            <summary>
+                消息框最小宽度
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.PanelMinHeight">
+            <summary>
+                消息框最小高度
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.PanelMaxWidth">
+            <summary>
+                消息框最大宽度
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.PanelMaxHeight">
+            <summary>
+                消息框最大高度
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.PanelMargin">
+            <summary>
+                消息框外边距
             </summary>
         </member>
         <member name="P:NPUiControl.FlowMessageBox.IsAutoHideTitleAndBorder">

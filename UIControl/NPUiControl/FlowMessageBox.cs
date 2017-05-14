@@ -17,6 +17,9 @@ namespace NPUiControl
     [TemplatePart(Name = "PART_TitleBlock", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_MessageView", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ResizeThumb", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_Canvas", Type = typeof(Panel))]
+    [TemplateVisualState(Name = "Normal", GroupName = "ViewStates")]
+    [TemplateVisualState(Name = "Active", GroupName = "ViewStates")]
     public class FlowMessageBox : Control
     {
         /// <summary>
@@ -80,6 +83,31 @@ namespace NPUiControl
         public static readonly DependencyProperty IsAutoHideTitleAndBorderProperty;
 
         /// <summary>
+        ///     消息框外边距属性
+        /// </summary>
+        public static readonly DependencyProperty PanelMarginProperty;
+
+        /// <summary>
+        ///     消息框最大高度属性
+        /// </summary>
+        public static readonly DependencyProperty PanelMaxHeightProperty;
+
+        /// <summary>
+        ///     消息框最大宽度属性
+        /// </summary>
+        public static readonly DependencyProperty PanelMaxWidthProperty;
+
+        /// <summary>
+        ///     消息框最小高度属性
+        /// </summary>
+        public static readonly DependencyProperty PanelMinHeightProperty;
+
+        /// <summary>
+        ///     消息框最小宽度属性
+        /// </summary>
+        public static readonly DependencyProperty PanelMinWidthProperty;
+
+        /// <summary>
         ///     新增信息时触发的路由事件
         /// </summary>
         public static readonly RoutedEvent MessageAddEvent;
@@ -106,9 +134,9 @@ namespace NPUiControl
             CanvasTopProperty = DependencyProperty.Register(
                 "CanvasTop", typeof(double), typeof(FlowMessageBox), new PropertyMetadata((double) 0));
             PanelHeightProperty = DependencyProperty.Register(
-                "PanelHeight", typeof(double), typeof(FlowMessageBox), new PropertyMetadata((double) 200));
+                "PanelHeight", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
             PanelWidthProperty = DependencyProperty.Register(
-                "PanelWidth", typeof(double), typeof(FlowMessageBox), new PropertyMetadata((double) 200));
+                "PanelWidth", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
             IsAnimationEnableProperty = DependencyProperty.Register(
                 "IsAnimationEnable", typeof(bool), typeof(FlowMessageBox), new PropertyMetadata(true));
             AccentColorProperty = DependencyProperty.Register(
@@ -120,6 +148,17 @@ namespace NPUiControl
                 new PropertyMetadata(default(CornerRadius)));
             IsAutoHideTitleAndBorderProperty = DependencyProperty.Register(
                 "IsAutoHideTitleAndBorder", typeof(bool), typeof(FlowMessageBox), new PropertyMetadata(default(bool)));
+            PanelMarginProperty = DependencyProperty.Register(
+                "PanelMargin", typeof(Thickness), typeof(FlowMessageBox),
+                new PropertyMetadata(new Thickness(-1, -1, -1, -1)));
+            PanelMaxHeightProperty = DependencyProperty.Register(
+                "PanelMaxHeight", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
+            PanelMaxWidthProperty = DependencyProperty.Register(
+                "PanelMaxWidth", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
+            PanelMinHeightProperty = DependencyProperty.Register(
+                "PanelMinHeight", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
+            PanelMinWidthProperty = DependencyProperty.Register(
+                "PanelMinWidth", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
 
             MessageAddEvent = EventManager.RegisterRoutedEvent("MessageAdded", RoutingStrategy.Bubble,
                 typeof(RoutedPropertyChangedEventHandler<string>), typeof(FlowMessageBox));
@@ -133,6 +172,51 @@ namespace NPUiControl
             Paragraph = new Paragraph();
             Document = new FlowDocument(Paragraph);
             Document.PagePadding = new Thickness(0, 0, 0, 0);
+        }
+
+        /// <summary>
+        ///     消息框最小宽度
+        /// </summary>
+        public double PanelMinWidth
+        {
+            get { return (double) GetValue(PanelMinWidthProperty); }
+            set { SetValue(PanelMinWidthProperty, value); }
+        }
+
+        /// <summary>
+        ///     消息框最小高度
+        /// </summary>
+        public double PanelMinHeight
+        {
+            get { return (double) GetValue(PanelMinHeightProperty); }
+            set { SetValue(PanelMinHeightProperty, value); }
+        }
+
+        /// <summary>
+        ///     消息框最大宽度
+        /// </summary>
+        public double PanelMaxWidth
+        {
+            get { return (double) GetValue(PanelMaxWidthProperty); }
+            set { SetValue(PanelMaxWidthProperty, value); }
+        }
+
+        /// <summary>
+        ///     消息框最大高度
+        /// </summary>
+        public double PanelMaxHeight
+        {
+            get { return (double) GetValue(PanelMaxHeightProperty); }
+            set { SetValue(PanelMaxHeightProperty, value); }
+        }
+
+        /// <summary>
+        ///     消息框外边距
+        /// </summary>
+        public Thickness PanelMargin
+        {
+            get { return (Thickness) GetValue(PanelMarginProperty); }
+            set { SetValue(PanelMarginProperty, value); }
         }
 
         /// <summary>
@@ -294,6 +378,29 @@ namespace NPUiControl
         /// </summary>
         public Color LastColor { get; private set; }
 
+        private void FlowMessageBox_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            CanvasLeft = PanelMargin.Left;
+            CanvasTop = PanelMargin.Top;
+
+            var width = ActualWidth - PanelMargin.Left - PanelMargin.Right;
+            if (!double.IsNaN(PanelMinWidth))
+                width = width < PanelMinWidth ? PanelMinWidth : width;
+            if (!double.IsNaN(PanelMaxWidth))
+                width = width > PanelMaxWidth ? PanelMaxWidth : width;
+            width = width < 0 ? 0 : width;
+
+            var height = ActualHeight - PanelMargin.Top - PanelMargin.Bottom;
+            if (!double.IsNaN(PanelMinHeight))
+                height = height < PanelMinHeight ? PanelMinHeight : height;
+            if (!double.IsNaN(PanelMaxHeight))
+                height = height > PanelMaxHeight ? PanelMaxHeight : height;
+            height = height < 0 ? 0 : height;
+
+            PanelWidth = width;
+            PanelHeight = height;
+        }
+
         /// <summary>
         ///     路由事件消息增加
         /// </summary>
@@ -309,8 +416,8 @@ namespace NPUiControl
         /// <param name="message">消息内容</param>
         public void AddMessage(string message)
         {
-            if(Foreground is SolidColorBrush)
-                AddMessage(message, ((SolidColorBrush)Foreground).Color);
+            if (Foreground is SolidColorBrush)
+                AddMessage(message, ((SolidColorBrush) Foreground).Color);
             else
                 AddMessage(message, Colors.Black);
         }
@@ -406,11 +513,19 @@ namespace NPUiControl
         {
             base.OnApplyTemplate();
 
+            if (PanelMargin != new Thickness(-1, -1, -1, -1))
+            {
+                var canvas = GetTemplateChild("PART_Canvas") as Panel;
+                if (canvas != null)
+                {
+                    SizeChanged += FlowMessageBox_SizeChanged;
+                }
+            }
             FlowDocumentScrollViewer = GetTemplateChild("PART_FlowDocumentScrollViewer") as FlowDocumentScrollViewer;
             if (FlowDocumentScrollViewer != null)
             {
                 FlowDocumentScrollViewer.Document = Document;
-                FlowDocumentScrollViewer.SizeChanged +=new SizeChangedEventHandler(FlowDocumentScrollViewer_SizeChanged);
+                FlowDocumentScrollViewer.SizeChanged += FlowDocumentScrollViewer_SizeChanged;
             }
 
             var titleBlock = GetTemplateChild("PART_TitleBlock") as FrameworkElement;
@@ -465,7 +580,7 @@ namespace NPUiControl
 
         private void FlowDocumentScrollViewer_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(_isDragDropInEffect || _isResizeEffect)
+            if (_isDragDropInEffect || _isResizeEffect)
                 return;
             ScrollViewer.ScrollToEnd();
         }
@@ -526,8 +641,14 @@ namespace NPUiControl
                     ? yAdjust
                     : _messageView.MinHeight;
 
-                xAdjust = xAdjust > ActualWidth ? ActualWidth - 1 : xAdjust;
-                yAdjust = yAdjust > ActualHeight ? ActualHeight - 1 : yAdjust;
+                xAdjust = xAdjust > _messageView.MaxWidth ? _messageView.MaxWidth : xAdjust;
+                yAdjust = yAdjust > _messageView.MaxHeight ? _messageView.MaxHeight : yAdjust;
+
+                xAdjust = xAdjust > ActualWidth ? ActualWidth : xAdjust;
+                yAdjust = yAdjust > ActualHeight ? ActualHeight : yAdjust;
+
+                xAdjust = xAdjust < 0 ? 0 : xAdjust;
+                yAdjust = yAdjust < 0 ? 0 : yAdjust;
 
                 _messageView.Width = xAdjust;
                 _messageView.Height = yAdjust;

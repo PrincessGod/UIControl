@@ -36,16 +36,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:FlowMessageBox}">
-                    <Canvas>
+                    <Canvas x:Name="PART_Canvas" ClipToBounds="True">
                         <Border x:Name="PART_MessageView" Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadiu}"
-                                BorderThickness="{TemplateBinding BorderThickness}" MinHeight="100"
-                                MinWidth="100">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="{TemplateBinding CornerRadiu}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                MinWidth="{TemplateBinding PanelMinWidth}"
+                                MinHeight="{TemplateBinding PanelMinHeight}"
+                                MaxHeight="{TemplateBinding PanelMaxHeight}"
+                                MaxWidth="{TemplateBinding PanelMaxHeight}">
                             <DockPanel x:Name="DockPanel" Focusable="False" LastChildFill="True">
                                 <ContentPresenter x:Name="PART_TitleBlock" DockPanel.Dock="Top"
                                                   Style="{TemplateBinding TitleStyle}" />
                                 <Grid>
-                                    <FlowDocumentScrollViewer x:Name="PART_FlowDocumentScrollViewer"                                                              
+                                    <FlowDocumentScrollViewer x:Name="PART_FlowDocumentScrollViewer"
                                                               Margin="{TemplateBinding Padding}"
                                                               VerticalScrollBarVisibility="Hidden"
                                                               HorizontalScrollBarVisibility="Disabled" />
@@ -63,13 +67,13 @@
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsAutoHideTitleAndBorder" Value="true"></Condition>
-                                <Condition SourceName="PART_MessageView" Property="IsMouseOver" Value="false"></Condition>
+                                <Condition Property="IsAutoHideTitleAndBorder" Value="true" />
+                                <Condition SourceName="PART_MessageView" Property="IsMouseOver" Value="false" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
-                                <Setter TargetName="PART_TitleBlock" Property="Visibility" Value="Collapsed"></Setter>
-                                <Setter TargetName="PART_ResizeThumb"  Property="Visibility" Value="Hidden"></Setter>
-                                <Setter TargetName="PART_MessageView"  Property="BorderBrush" Value="Transparent"></Setter>
+                                <Setter TargetName="PART_TitleBlock" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="PART_ResizeThumb" Property="Visibility" Value="Hidden" />
+                                <Setter TargetName="PART_MessageView" Property="BorderBrush" Value="Transparent" />
                             </MultiTrigger.Setters>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>

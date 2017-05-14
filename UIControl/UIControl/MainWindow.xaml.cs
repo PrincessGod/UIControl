@@ -38,9 +38,9 @@ namespace UIControl
             }
 
             if (size == 0)
-                FlowMessageBox1.AddMessage(rd.Next(50000).ToString("C"), color);
+                FlowMessageBox1.AddMessage(rd.Next(50000).ToString("C") + "    " + DateTime.Now, color);
             else
-                FlowMessageBox1.AddMessage(rd.Next(50000).ToString("C"), color, size);
+                FlowMessageBox1.AddMessage(rd.Next(50000).ToString("C") + "    " + DateTime.Now, color, size);
         }
 
         private void FlowMessageBox1_OnMessageAdded(object sender, RoutedPropertyChangedEventArgs<string> e)

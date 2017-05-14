@@ -6,22 +6,26 @@
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/NPUiControl;component/Themes/scrollbar.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/NPUiControl;component/Themes/scrollbar.xaml" />
+                </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Grid.Resources>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                <GradientStop Color="Black" Offset="0"></GradientStop>
-                <GradientStop Color="AntiqueWhite" Offset="1"></GradientStop>
+                <GradientStop Color="Black" Offset="0" />
+                <GradientStop Color="AntiqueWhite" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <npUiControl:FlowMessageBox x:Name="FlowMessageBox1" MessageAdded="FlowMessageBox1_OnMessageAdded" Margin="10 10 100 20" Foreground="#00D5FC"
-                                    CanvasLeft="10" CanvasTop="10" Title="Title 1231W" FontFamily="AR BONNIE" FontSize="14" CornerRadiu="5" 
+        <!--CanvasLeft="10" CanvasTop="10"-->
+        <npUiControl:FlowMessageBox x:Name="FlowMessageBox1" MessageAdded="FlowMessageBox1_OnMessageAdded"
+                                    Margin="10 10 100 20" Foreground="#00D5FC"
+                                    Title="Title 1231W" FontFamily="AR BONNIE" FontSize="14" CornerRadiu="5"
                                     IsAutoHideTitleAndBorder="{Binding ElementName=CheckBox3, Path=IsChecked}"
-                                    Padding="30 0 10 0" BorderBrush="AliceBlue"  BorderThickness="2"  IsAnimationEnable="{Binding ElementName=CheckBox, Path=IsChecked}"
-                                    Background="#2C0082F4" >
+                                    Padding="30 0 10 0" BorderBrush="AliceBlue" BorderThickness="2"
+                                    IsAnimationEnable="{Binding ElementName=CheckBox, Path=IsChecked}"
+                                    Background="#2C0082F4" PanelMargin="10" PanelMinHeight="100" PanelMinWidth="100"
+                                    PanelMaxHeight="700" PanelMaxWidth="700">
             <!--<npUiControl:FlowMessageBox.TitleStyle>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="ContentTemplate">
@@ -53,10 +57,19 @@
         </npUiControl:FlowMessageBox>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="ButtonBase_OnClick">随机生成</Button>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 40" Click="ButtonBase1_OnClick">清除</Button>
-        <CheckBox x:Name="CheckBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 70" IsChecked="True" >开启动画</CheckBox>
-        <CheckBox x:Name="CheckBox1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 90" IsChecked="True" >随机颜色</CheckBox>
-        <CheckBox x:Name="CheckBox2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 110" IsChecked="True" >随机字号</CheckBox>
-        <CheckBox x:Name="CheckBox3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 130" IsChecked="True" >隐藏修饰</CheckBox>
+        <CheckBox x:Name="CheckBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 70" IsChecked="True">开启动画</CheckBox>
+        <CheckBox x:Name="CheckBox1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 90"
+                  IsChecked="True">
+            随机颜色
+        </CheckBox>
+        <CheckBox x:Name="CheckBox2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 110"
+                  IsChecked="True">
+            随机字号
+        </CheckBox>
+        <CheckBox x:Name="CheckBox3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 130"
+                  IsChecked="True">
+            隐藏修饰
+        </CheckBox>
         <TextBlock VerticalAlignment="Bottom" Foreground="Aquamarine" x:Name="TextBlock" />
     </Grid>
 </Window>
