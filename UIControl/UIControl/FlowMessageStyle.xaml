@@ -1,4 +1,4 @@
-﻿<Window x:Class="UIControl.MainWindow"
+﻿<Window x:Class="UIControl.FlowMessageStyle"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:npUiControl="clr-namespace:NPUiControl;assembly=NPUiControl"
@@ -24,8 +24,40 @@
                                     IsAutoHideTitleAndBorder="{Binding ElementName=CheckBox3, Path=IsChecked}"
                                     Padding="30 2 2 2" BorderBrush="AliceBlue" BorderThickness="2"
                                     IsAnimationEnable="{Binding ElementName=CheckBox, Path=IsChecked}"
-                                    Background="#2C0082F4" PanelMargin="0 0 100 100"
-                                    PanelMaxHeight="400" PanelMinHeight="100" PanelMaxWidth="400" PanelMinWidth="100" />
+                                    Background="#2C0082F4" CanvasTop="20" CanvasLeft="30" PanelWidth="100"
+                                    PanelHeight="100">
+            <npUiControl:FlowMessageBox.TitleStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Border BorderThickness="1" BorderBrush="CadetBlue" Background="#596495ED"
+                                            CornerRadius="0 0 30 30">
+                                        <TextBlock FontSize="14" HorizontalAlignment="Center" Foreground="Aqua"
+                                                   Text="{TemplateBinding Tag}" />
+                                    </Border>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </npUiControl:FlowMessageBox.TitleStyle>
+            <npUiControl:FlowMessageBox.ThumbStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Grid Background="#01000000">
+                                    <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="Aqua" />
+                                    <Line X1="5" Y1="10" X2="10" Y2="5" Stroke="Aqua" />
+                                </Grid>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </npUiControl:FlowMessageBox.ThumbStyle>
+        </npUiControl:FlowMessageBox>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="ButtonBase_OnClick">随机生成</Button>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 40" Click="ButtonBase1_OnClick">清除</Button>
         <CheckBox x:Name="CheckBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 70" IsChecked="True">开启动画</CheckBox>

@@ -4,6 +4,13 @@ NPUiControl v1.0 2017/5/12
 添加ScrollBar样式
 修改库为.Net 4.0
 
-NPUiControl v1.1 2017/5/14
+-------------------
+NPUiControl v1.0 2017/5/14
 
 对FlowMessageBox添加流式布局支持
+更新系统风格ScrollBar
+
+-------------------
+NPUiControl v1.0 2017/5/15
+
+添加 PageNavigator 实现对 ItemsControl 自动分页和导航
