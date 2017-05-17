@@ -23,11 +23,6 @@ namespace NPUiControl
         private CollectionView _view;
 
         /// <summary>
-        /// 手动管理刷新
-        /// </summary>
-        public bool RefreshBySelf { get; set; }
-
-        /// <summary>
         ///     导航信息格式化字符串 {0} 当前页  {1} 总页数
         /// </summary>
         public string StringFormat = "Page {0} of {1}";
@@ -48,6 +43,11 @@ namespace NPUiControl
 
             Measure();
         }
+
+        /// <summary>
+        ///     手动管理刷新
+        /// </summary>
+        public bool RefreshBySelf { get; set; }
 
         /// <summary>
         ///     当前页
@@ -150,7 +150,7 @@ namespace NPUiControl
         private void collection1_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Measure();
-            if(!RefreshBySelf)
+            if (!RefreshBySelf)
                 Refrash();
         }
 
@@ -173,8 +173,8 @@ namespace NPUiControl
             Measure();
             if (Page > 1)
                 GoPage(--Page);
-            else            
-                GoPage(1);           
+            else
+                GoPage(1);
         }
 
         /// <summary>
@@ -185,8 +185,8 @@ namespace NPUiControl
             Measure();
             if (Page < MaxPage)
                 GoPage(++Page);
-            else           
-                GoPage(MaxPage);           
+            else
+                GoPage(MaxPage);
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace NPUiControl
         }
 
         /// <summary>
-        /// 当集合改变后调用此接口可刷新集合
+        ///     当集合改变后调用此接口可刷新集合
         /// </summary>
         public void Refrash()
         {

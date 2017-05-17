@@ -271,11 +271,6 @@
                 用于对 ItemsControl 进行页面导航
             </summary>
         </member>
-        <member name="P:NPUiControl.PageNavigator.RefreshBySelf">
-            <summary>
-            手动管理刷新
-            </summary>
-        </member>
         <member name="F:NPUiControl.PageNavigator.StringFormat">
             <summary>
                 导航信息格式化字符串 {0} 当前页  {1} 总页数
@@ -288,6 +283,11 @@
             <param name="view">数据视图</param>
             <param name="collection">ItemSource 绑定对象</param>
             <param name="numPerPage">每页条目数</param>
+        </member>
+        <member name="P:NPUiControl.PageNavigator.RefreshBySelf">
+            <summary>
+                手动管理刷新
+            </summary>
         </member>
         <member name="P:NPUiControl.PageNavigator.Page">
             <summary>
@@ -347,7 +347,7 @@
         </member>
         <member name="M:NPUiControl.PageNavigator.Refrash">
             <summary>
-            当集合改变后调用此接口可刷新集合
+                当集合改变后调用此接口可刷新集合
             </summary>
         </member>
         <member name="M:NPUiControl.PageNavigator.OnPropertyChanged(System.String)">

@@ -6,12 +6,10 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Border Height="30">
-                        <Grid Background="#7CADD8E6">
-                            <TextBlock VerticalAlignment="Center" Foreground="BlueViolet" Text="{TemplateBinding Tag}"
-                                       HorizontalAlignment="Center" />
-                        </Grid>
-                    </Border>
+                    <Grid Background="#A6008DC9" Height="30">
+                        <TextBlock VerticalAlignment="Center" Foreground="#E7F9F7" Text="{TemplateBinding Tag}"
+                                    HorizontalAlignment="Center" />
+                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -36,8 +34,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:FlowMessageBox}">
-                    <Canvas x:Name="PART_Canvas" ClipToBounds="True">
-                        <Border x:Name="PART_MessageView" Background="{TemplateBinding Background}"
+                    <Canvas x:Name="PART_Canvas">
+                        <Border x:Name="PART_MessageView" ClipToBounds="True"
+                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="{TemplateBinding CornerRadiu}"
                                 BorderThickness="{TemplateBinding BorderThickness}"

@@ -142,7 +142,7 @@ namespace NPUiControl
             AccentColorProperty = DependencyProperty.Register(
                 "AccentColor", typeof(Color), typeof(FlowMessageBox), new PropertyMetadata(Colors.Aqua));
             AccentFontSizeRatioProperty = DependencyProperty.Register(
-                "AccentFontSizeRatio", typeof(double), typeof(FlowMessageBox), new PropertyMetadata((double) 0));
+                "AccentFontSizeRatio", typeof(double), typeof(FlowMessageBox), new PropertyMetadata((double) 4));
             CornerRadiuProperty = DependencyProperty.Register(
                 "CornerRadiu", typeof(CornerRadius), typeof(FlowMessageBox),
                 new PropertyMetadata(default(CornerRadius)));
@@ -488,7 +488,8 @@ namespace NPUiControl
 
                 var fontSizeAnimation = new DoubleAnimation();
                 fontSizeAnimation.From = fontSize + AccentFontSizeRatio;
-                fontSizeAnimation.Duration = TimeSpan.FromSeconds(2);
+                fontSizeAnimation.Duration = TimeSpan.FromSeconds(.5);
+                fontSizeAnimation.EasingFunction = new SineEase(){EasingMode = EasingMode.EaseOut};            
                 run.BeginAnimation(TextElement.FontSizeProperty, fontSizeAnimation);
             }
 
