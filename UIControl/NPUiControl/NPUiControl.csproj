@@ -52,6 +52,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgressRing.cs" />
     <Compile Include="UiHelper.cs" />
     <Page Include="Themes\FlowMessageBox.xaml">
       <SubType>Designer</SubType>
@@ -65,6 +66,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Themes\MovableContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ProgressRingStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

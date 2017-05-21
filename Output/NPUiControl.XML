@@ -4,6 +4,33 @@
         <name>NPUiControl</name>
     </assembly>
     <members>
+        <member name="T:NPUiControl.ModernProgressRing">
+            <summary>
+                未知时长的等待控件
+                资源文件中有名为 Accent 的 SolidColorBrush 控制默认前景色
+            </summary>
+        </member>
+        <member name="F:NPUiControl.ModernProgressRing.IsActiveProperty">
+            <summary>
+                是否激活属性
+            </summary>
+        </member>
+        <member name="M:NPUiControl.ModernProgressRing.#ctor">
+            <summary>
+                初始化一个 <see cref="T:NPUiControl.ModernProgressRing" /> 对象
+            </summary>
+        </member>
+        <member name="P:NPUiControl.ModernProgressRing.IsActive">
+            <summary>
+                获取或设置 <see cref="T:NPUiControl.ModernProgressRing" /> 的激活状态
+            </summary>
+        </member>
+        <member name="M:NPUiControl.ModernProgressRing.OnApplyTemplate">
+            <summary>
+                当应用模板时控件触发此方法
+                <see cref="M:System.Windows.FrameworkElement.ApplyTemplate" />.
+            </summary>
+        </member>
         <member name="T:NPUiControl.UiHelper">
             <summary>
                 WPF UI帮助类

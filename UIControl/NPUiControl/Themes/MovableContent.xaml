@@ -31,7 +31,7 @@
                                 <Grid>
                                     <ContentPresenter x:Name="PART_ResizeThumb" HorizontalAlignment="Right"
                                                       VerticalAlignment="Bottom"
-                                                      Style="{TemplateBinding ContentStyle}" />
+                                                      Content="{TemplateBinding ContentStyle}" />
                                 </Grid>
                             </StackPanel>
                         </Border>

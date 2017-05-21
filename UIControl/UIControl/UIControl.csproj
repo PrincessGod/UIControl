@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProcessRing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ScrollBarStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,6 +107,9 @@
     </Compile>
     <Compile Include="PageNavigator.xaml.cs">
       <DependentUpon>PageNavigator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessRing.xaml.cs">
+      <DependentUpon>ProcessRing.xaml</DependentUpon>
     </Compile>
     <Compile Include="ScrollBarStyle.xaml.cs">
       <DependentUpon>ScrollBarStyle.xaml</DependentUpon>

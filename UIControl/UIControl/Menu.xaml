@@ -12,6 +12,7 @@
             <Button Tag="PageNavigatorManual">PageNavigatorManual</Button>
             <Button Tag="MoveableControl">MoveableControl</Button>
             <Button Tag="MovableContentUseTitleContent">MovableTitleContext</Button>
+            <Button Tag="ProcessRing">ProcessRing</Button>
             
         </StackPanel>
 

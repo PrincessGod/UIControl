@@ -8,28 +8,17 @@
         mc:Ignorable="d"
         Title="MoveableControl" Height="300" Width="300">
     <Grid>
-        <npUiControl:MoveableContent x:Name="A" CanvasLeft="10" CanvasTop="20" BorderThickness="1" BorderBrush="Aqua" CornerRadiu="3" Title="Title"  Margin="0 0 50 0">
+        <npUiControl:MoveableContent x:Name="A" CanvasLeft="10" CanvasTop="20" BorderThickness="1" BorderBrush="Aqua"
+                                     CornerRadiu="3" Title="Title" Margin="0 0 50 0">
             <npUiControl:MoveableContent.ContentStyle>
-                <Style TargetType="ContentPresenter">
-                    <Setter Property="Content">
-                        <Setter.Value>
-                            <StackPanel>
+                <StackPanel>
 
-                                <Button Width="200">Button</Button>
-                                <TextBlock HorizontalAlignment="Center">TextBlock</TextBlock>
-                                <TextBox HorizontalAlignment="Center">TextBox</TextBox>
+                    <Button Width="200">Button</Button>
+                    <TextBlock HorizontalAlignment="Center">TextBlock</TextBlock>
+                    <TextBox HorizontalAlignment="Center">TextBox</TextBox>
 
-                            </StackPanel>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
+                </StackPanel>
             </npUiControl:MoveableContent.ContentStyle>
-            <!--<npUiControl:MoveableContent.TitleContent>
-                <Grid Background="Black">
-                    <TextBlock x:Name="PART_Title" Foreground="Aqua" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <Button HorizontalAlignment="Right" x:Name="PART_Close" VerticalAlignment="Center">关闭</Button>
-                </Grid>
-            </npUiControl:MoveableContent.TitleContent>-->
         </npUiControl:MoveableContent>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Click="ButtonBase_OnClick">显示</Button>
     </Grid>

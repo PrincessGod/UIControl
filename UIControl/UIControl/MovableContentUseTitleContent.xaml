@@ -10,19 +10,13 @@
     <Grid>
         <npUiControl:MoveableContent x:Name="A" CanvasLeft="10" CanvasTop="20" BorderThickness="1" BorderBrush="Aqua" CornerRadiu="3" Title="Title"  Margin="0 0 50 0">
             <npUiControl:MoveableContent.ContentStyle>
-                <Style TargetType="ContentPresenter">
-                    <Setter Property="Content">
-                        <Setter.Value>
-                            <StackPanel>
+                <StackPanel>
 
-                                <Button Width="200">Button</Button>
-                                <TextBlock HorizontalAlignment="Center">TextBlock</TextBlock>
-                                <TextBox HorizontalAlignment="Center">TextBox</TextBox>
+                    <Button Width="200">Button</Button>
+                    <TextBlock HorizontalAlignment="Center">TextBlock</TextBlock>
+                    <TextBox HorizontalAlignment="Center">TextBox</TextBox>
 
-                            </StackPanel>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
+                </StackPanel>
             </npUiControl:MoveableContent.ContentStyle>
             <npUiControl:MoveableContent.TitleContent>
                 <Grid Background="Black">

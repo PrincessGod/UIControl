@@ -4,5 +4,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/NPUiControl;component/Themes/FlowMessageBox.xaml" />
         <ResourceDictionary Source="/NPUiControl;component/Themes/MovableContent.xaml" />
+        <ResourceDictionary Source="/NPUiControl;component/Themes/ProgressRingStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
