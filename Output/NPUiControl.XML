@@ -265,6 +265,87 @@
                 应用模板时触发
             </summary>
         </member>
+        <member name="T:NPUiControl.MoveableContent">
+            <summary>
+                可拖动的Control
+                有标题栏和关闭按钮但不支持自定义
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.TitleContentProperty">
+            <summary>
+                标题栏Content属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.TitleProperty">
+            <summary>
+                标题属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.CanvasTopProperty">
+            <summary>
+                上边距
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.CanvasLeftProperty">
+            <summary>
+                左边距
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.CornerRadiuProperty">
+            <summary>
+                圆角属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.ContentStyleProperty">
+            <summary>
+                内容Style属性
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.TitleContent">
+            <summary>
+                标题栏Content
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.Title">
+            <summary>
+                标题
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.ContentActualWidth">
+            <summary>
+                当前Content的ActualWidth
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.ContentActualHeight">
+            <summary>
+                当前Content的ActualHeight
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.CanvasTop">
+            <summary>
+                上边距
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.CanvasLeft">
+            <summary>
+                左边距
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.CornerRadiu">
+            <summary>
+                圆角值
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.ContentStyle">
+            <summary>
+                内容Style
+            </summary>
+        </member>
+        <member name="M:NPUiControl.MoveableContent.OnApplyTemplate">
+            <summary>
+                应用模板时触发
+            </summary>
+        </member>
         <member name="T:NPUiControl.PageNavigator">
             <summary>
                 页面导航器
@@ -956,6 +1037,36 @@
             <summary>
               使用此强类型资源类，为所有资源查找
               重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

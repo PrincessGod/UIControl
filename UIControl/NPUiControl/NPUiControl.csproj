@@ -63,12 +63,17 @@
     <Compile Include="FlowMessageBox.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\MovableContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\ScrollBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MoveableContent.cs" />
     <Compile Include="PageNavigator.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

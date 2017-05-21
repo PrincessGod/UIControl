@@ -60,6 +60,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="MovableContentUseTitleContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MoveableControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PageNavigatorManual.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +91,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MovableContentUseTitleContent.xaml.cs">
+      <DependentUpon>MovableContentUseTitleContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveableControl.xaml.cs">
+      <DependentUpon>MoveableControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageNavigatorManual.xaml.cs">
       <DependentUpon>PageNavigatorManual.xaml</DependentUpon>

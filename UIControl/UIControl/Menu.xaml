@@ -10,6 +10,8 @@
             <Button Tag="ScrollBarStyle">ScrollBarStyle</Button>
             <Button Tag="PageNavigator">PageNavigator</Button>
             <Button Tag="PageNavigatorManual">PageNavigatorManual</Button>
+            <Button Tag="MoveableControl">MoveableControl</Button>
+            <Button Tag="MovableContentUseTitleContent">MovableTitleContext</Button>
             
         </StackPanel>
 

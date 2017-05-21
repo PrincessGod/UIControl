@@ -3,5 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/NPUiControl;component/Themes/FlowMessageBox.xaml" />
+        <ResourceDictionary Source="/NPUiControl;component/Themes/MovableContent.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
