@@ -4,6 +4,47 @@
         <name>NPUiControl</name>
     </assembly>
     <members>
+        <member name="T:NPUiControl.UiHelper">
+            <summary>
+                WPF UI帮助类
+            </summary>
+        </member>
+        <member name="F:NPUiControl.UiHelper.IsBusy">
+            <summary>
+                A value indicating whether the UI is currently busy
+            </summary>
+        </member>
+        <member name="M:NPUiControl.UiHelper.FindChild``1(System.Windows.DependencyObject,System.String)">
+            <summary>
+                Finds a Child of a given item in the visual tree.
+            </summary>
+            <param name="parent">A direct parent of the queried item.</param>
+            <typeparam name="T">The type of the queried item.</typeparam>
+            <param name="childName">x:Name or Name of child. </param>
+            <returns>
+                The first parent item that matches the submitted type parameter.
+                If not matching item can be found,
+                a null parent is being returned.
+            </returns>
+        </member>
+        <member name="M:NPUiControl.UiHelper.SetBusyState">
+            <summary>
+                Sets the busystate as busy.
+            </summary>
+        </member>
+        <member name="M:NPUiControl.UiHelper.SetBusyState(System.Boolean)">
+            <summary>
+                Sets the busystate to busy or not busy.
+            </summary>
+            <param name="busy">if set to <c>true</c> the application is now busy.</param>
+        </member>
+        <member name="M:NPUiControl.UiHelper.dispatcherTimer_Tick(System.Object,System.EventArgs)">
+            <summary>
+                Handles the Tick event of the dispatcherTimer control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
+        </member>
         <member name="T:NPUiControl.FlowMessageBox">
             <summary>
                 流文本消息框

@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace NPUiControl
 {
@@ -12,7 +11,6 @@ namespace NPUiControl
     /// </summary>
     [TemplatePart(Name = "PART_Moveable", Type = typeof(ContentPresenter))]
     [TemplatePart(Name = "PART_Content", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_Button", Type = typeof(Button))]
     public class MoveableContent : Control
     {
         /// <summary>
@@ -167,23 +165,17 @@ namespace NPUiControl
                 var content = moveable.Content as FrameworkElement;
                 if (content != null)
                 {
-                    var count = VisualTreeHelper.GetChildrenCount(content);
-                    for (var i = 0; i < count; i++)
+                    var button = UiHelper.FindChild<Button>(content, "PART_Close");
+                    if (button != null)
+                        button.Click += Button_Click;
+
+                    var textbloct = UiHelper.FindChild<TextBlock>(content, "PART_Title");
+                    if (textbloct != null)
                     {
-                        var fe = VisualTreeHelper.GetChild(content, i);
-
-                        var button = fe as Button;
-                        if (button != null && button.Name == "PART_Close")
-                            button.Click += Button_Click;
-
-                        var text = fe as TextBlock;
-                        if (text != null && text.Name == "PART_Title")
-                        {
-                            var binding = new Binding("Title");
-                            binding.Source = this;
-                            binding.Mode = BindingMode.OneWay;
-                            text.SetBinding(TextBlock.TextProperty, binding);
-                        }
+                        var binding = new Binding("Title");
+                        binding.Source = this;
+                        binding.Mode = BindingMode.OneWay;
+                        textbloct.SetBinding(TextBlock.TextProperty, binding);
                     }
                 }
             }
