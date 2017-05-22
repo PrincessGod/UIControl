@@ -10,15 +10,15 @@
     <Grid>
         <npUiControl:MoveableContent x:Name="A" CanvasLeft="10" CanvasTop="20" BorderThickness="1" BorderBrush="Aqua"
                                      CornerRadiu="3" Title="Title" Margin="0 0 50 0">
-            <npUiControl:MoveableContent.ContentStyle>
+            <npUiControl:MoveableContent.Content>
                 <StackPanel>
 
-                    <Button Width="200">Button</Button>
+                    <Button Width="200" Command="{x:Static npUiControl:MoveableContent.HideContentCommand}">Button</Button>
                     <TextBlock HorizontalAlignment="Center">TextBlock</TextBlock>
                     <TextBox HorizontalAlignment="Center">TextBox</TextBox>
 
                 </StackPanel>
-            </npUiControl:MoveableContent.ContentStyle>
+            </npUiControl:MoveableContent.Content>
         </npUiControl:MoveableContent>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Click="ButtonBase_OnClick">显示</Button>
     </Grid>

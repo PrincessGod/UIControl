@@ -8,7 +8,8 @@
                 <DockPanel Background="#B77FFFD4">
                     <TextBlock x:Name="PART_Title" Margin="10 0 0 0" DockPanel.Dock="Left"
                                VerticalAlignment="Center" HorizontalAlignment="Left" />
-                    <Button x:Name="PART_Close" VerticalAlignment="Center" DockPanel.Dock="Right"
+                    <Button Command="{x:Static local:MoveableContent.HideContentCommand}" VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             HorizontalAlignment="Right">
                         X
                     </Button>
@@ -27,11 +28,21 @@
                                 BorderThickness="{TemplateBinding BorderThickness}">
                             <StackPanel x:Name="DockPanel" Focusable="False">
                                 <ContentPresenter x:Name="PART_Moveable" DockPanel.Dock="Top"
-                                                  Content="{TemplateBinding TitleContent}" />
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Content="{TemplateBinding TitleContent}"
+                                                  ContentTemplate="{TemplateBinding TitleDataTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding TitleDataTemplateSelector}"
+                                                  ContentStringFormat="{TemplateBinding TitleStringFormat}"
+                                                  RenderTransformOrigin=".5,.5" />
                                 <Grid>
                                     <ContentPresenter x:Name="PART_ResizeThumb" HorizontalAlignment="Right"
                                                       VerticalAlignment="Bottom"
-                                                      Content="{TemplateBinding ContentStyle}" />
+                                                      Margin="{TemplateBinding Padding}"
+                                                      Content="{TemplateBinding Content}"
+                                                      ContentTemplate="{TemplateBinding ContentDataTemplate}"
+                                                      ContentTemplateSelector="{TemplateBinding ContentDataTemplateSelector}"
+                                                      ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                      RenderTransformOrigin=".5,.5" />
                                 </Grid>
                             </StackPanel>
                         </Border>

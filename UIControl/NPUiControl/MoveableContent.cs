@@ -14,6 +14,41 @@ namespace NPUiControl
     public class MoveableContent : Control
     {
         /// <summary>
+        ///     标题栏字符串格式属性
+        /// </summary>
+        public static readonly DependencyProperty TitleStringFormatProperty;
+
+        /// <summary>
+        ///     标题栏数据模板选择器属性
+        /// </summary>
+        public static readonly DependencyProperty TitleDataTemplateSelectorProperty;
+
+        /// <summary>
+        ///     标题栏数据模板属性
+        /// </summary>
+        public static readonly DependencyProperty TitleDataTemplateProperty;
+
+        /// <summary>
+        ///     内容字符串格式属性
+        /// </summary>
+        public static readonly DependencyProperty ContentStringFormatProperty;
+
+        /// <summary>
+        ///     内容数据模板选择器属性
+        /// </summary>
+        public static readonly DependencyProperty ContentDataTemplateSelectorProperty;
+
+        /// <summary>
+        ///     内容数据模板属性
+        /// </summary>
+        public static readonly DependencyProperty ContentDataTemplateProperty;
+
+        /// <summary>
+        ///     隐藏控件路由命令
+        /// </summary>
+        public static RoutedCommand HideContentCommand = new RoutedCommand();
+
+        /// <summary>
         ///     标题栏Content属性
         /// </summary>
         public static readonly DependencyProperty TitleContentProperty;
@@ -41,7 +76,7 @@ namespace NPUiControl
         /// <summary>
         ///     内容Style属性
         /// </summary>
-        public static readonly DependencyProperty ContentStyleProperty;
+        public static readonly DependencyProperty ContentProperty;
 
         private FrameworkElement _contentElement;
         private bool _isDragDropInEffect;
@@ -61,10 +96,88 @@ namespace NPUiControl
             CornerRadiuProperty = DependencyProperty.Register(
                 "CornerRadiu", typeof(CornerRadius), typeof(MoveableContent),
                 new PropertyMetadata(default(CornerRadius)));
-            ContentStyleProperty = DependencyProperty.Register(
-                "ContentStyle", typeof(object), typeof(MoveableContent), new PropertyMetadata(default(object)));
+            ContentProperty = DependencyProperty.Register(
+                "Content", typeof(object), typeof(MoveableContent), new PropertyMetadata(default(object)));
             TitleContentProperty = DependencyProperty.Register(
                 "TitleContent", typeof(object), typeof(MoveableContent), new PropertyMetadata(default(object)));
+            TitleStringFormatProperty = DependencyProperty.Register(
+                "TitleStringFormat", typeof(string), typeof(MoveableContent), new PropertyMetadata(default(string)));
+            TitleDataTemplateSelectorProperty = DependencyProperty.Register(
+                "TitleDataTemplateSelector", typeof(DataTemplateSelector), typeof(MoveableContent),
+                new PropertyMetadata(default(DataTemplateSelector)));
+            TitleDataTemplateProperty = DependencyProperty.Register(
+                "TitleDataTemplate", typeof(DataTemplate), typeof(MoveableContent),
+                new PropertyMetadata(default(DataTemplate)));
+            ContentStringFormatProperty = DependencyProperty.Register(
+                "ContentStringFormat", typeof(string), typeof(MoveableContent), new PropertyMetadata(default(string)));
+            ContentDataTemplateSelectorProperty = DependencyProperty.Register(
+                "ContentDataTemplateSelector", typeof(DataTemplateSelector), typeof(MoveableContent),
+                new PropertyMetadata(default(DataTemplateSelector)));
+            ContentDataTemplateProperty = DependencyProperty.Register(
+                "ContentDataTemplate", typeof(DataTemplate), typeof(MoveableContent),
+                new PropertyMetadata(default(DataTemplate)));
+        }
+
+        /// <summary>
+        ///     拥有Title和Content两部分组成并能在一定区域内拖动的控件
+        /// </summary>
+        public MoveableContent()
+        {
+            CommandBindings.Add(new CommandBinding(HideContentCommand, HideContent));
+        }
+
+        /// <summary>
+        ///     标题栏字符串内容
+        /// </summary>
+        public string TitleStringFormat
+        {
+            get { return (string) GetValue(TitleStringFormatProperty); }
+            set { SetValue(TitleStringFormatProperty, value); }
+        }
+
+        /// <summary>
+        ///     标题栏数据模板选择器
+        /// </summary>
+        public DataTemplateSelector TitleDataTemplateSelector
+        {
+            get { return (DataTemplateSelector) GetValue(TitleDataTemplateSelectorProperty); }
+            set { SetValue(TitleDataTemplateSelectorProperty, value); }
+        }
+
+        /// <summary>
+        ///     标题栏数据模板
+        /// </summary>
+        public DataTemplate TitleDataTemplate
+        {
+            get { return (DataTemplate) GetValue(TitleDataTemplateProperty); }
+            set { SetValue(TitleDataTemplateProperty, value); }
+        }
+
+        /// <summary>
+        ///     内容字符串格式
+        /// </summary>
+        public string ContentStringFormat
+        {
+            get { return (string) GetValue(ContentStringFormatProperty); }
+            set { SetValue(ContentStringFormatProperty, value); }
+        }
+
+        /// <summary>
+        ///     内容数据模板选择器
+        /// </summary>
+        public DataTemplateSelector ContentDataTemplateSelector
+        {
+            get { return (DataTemplateSelector) GetValue(ContentDataTemplateSelectorProperty); }
+            set { SetValue(ContentDataTemplateSelectorProperty, value); }
+        }
+
+        /// <summary>
+        ///     内容数据模板
+        /// </summary>
+        public DataTemplate ContentDataTemplate
+        {
+            get { return (DataTemplate) GetValue(ContentDataTemplateProperty); }
+            set { SetValue(ContentDataTemplateProperty, value); }
         }
 
         /// <summary>
@@ -142,10 +255,15 @@ namespace NPUiControl
         /// <summary>
         ///     内容Style
         /// </summary>
-        public object ContentStyle
+        public object Content
         {
-            get { return GetValue(ContentStyleProperty); }
-            set { SetValue(ContentStyleProperty, value); }
+            get { return GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
+        }
+
+        private void HideContent(object sender, ExecutedRoutedEventArgs e)
+        {
+            Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -165,10 +283,6 @@ namespace NPUiControl
                 var content = moveable.Content as FrameworkElement;
                 if (content != null)
                 {
-                    var button = UiHelper.FindChild<Button>(content, "PART_Close");
-                    if (button != null)
-                        button.Click += Button_Click;
-
                     var textbloct = UiHelper.FindChild<TextBlock>(content, "PART_Title");
                     if (textbloct != null)
                     {
@@ -195,10 +309,6 @@ namespace NPUiControl
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Visibility = Visibility.Hidden;
-        }
 
         private void Drag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {

@@ -339,6 +339,41 @@
                 有标题栏和关闭按钮但不支持自定义
             </summary>
         </member>
+        <member name="F:NPUiControl.MoveableContent.TitleStringFormatProperty">
+            <summary>
+                标题栏字符串格式属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.TitleDataTemplateSelectorProperty">
+            <summary>
+                标题栏数据模板选择器属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.TitleDataTemplateProperty">
+            <summary>
+                标题栏数据模板属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.ContentStringFormatProperty">
+            <summary>
+                内容字符串格式属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.ContentDataTemplateSelectorProperty">
+            <summary>
+                内容数据模板选择器属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.ContentDataTemplateProperty">
+            <summary>
+                内容数据模板属性
+            </summary>
+        </member>
+        <member name="F:NPUiControl.MoveableContent.HideContentCommand">
+            <summary>
+                隐藏控件路由命令
+            </summary>
+        </member>
         <member name="F:NPUiControl.MoveableContent.TitleContentProperty">
             <summary>
                 标题栏Content属性
@@ -364,9 +399,44 @@
                 圆角属性
             </summary>
         </member>
-        <member name="F:NPUiControl.MoveableContent.ContentStyleProperty">
+        <member name="F:NPUiControl.MoveableContent.ContentProperty">
             <summary>
                 内容Style属性
+            </summary>
+        </member>
+        <member name="M:NPUiControl.MoveableContent.#ctor">
+            <summary>
+                拥有Title和Content两部分组成并能在一定区域内拖动的控件
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.TitleStringFormat">
+            <summary>
+                标题栏字符串内容
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.TitleDataTemplateSelector">
+            <summary>
+                标题栏数据模板选择器
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.TitleDataTemplate">
+            <summary>
+                标题栏数据模板
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.ContentStringFormat">
+            <summary>
+                内容字符串格式
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.ContentDataTemplateSelector">
+            <summary>
+                内容数据模板选择器
+            </summary>
+        </member>
+        <member name="P:NPUiControl.MoveableContent.ContentDataTemplate">
+            <summary>
+                内容数据模板
             </summary>
         </member>
         <member name="P:NPUiControl.MoveableContent.TitleContent">
@@ -404,7 +474,7 @@
                 圆角值
             </summary>
         </member>
-        <member name="P:NPUiControl.MoveableContent.ContentStyle">
+        <member name="P:NPUiControl.MoveableContent.Content">
             <summary>
                 内容Style
             </summary>
