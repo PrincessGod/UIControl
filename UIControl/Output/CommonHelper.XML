@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CommonHelper</name>
+    </assembly>
+    <members>
+        <member name="T:CommonHelper.Serialize">
+            <summary>
+                序列化文件辅助类
+            </summary>
+        </member>
+        <member name="M:CommonHelper.Serialize.SerializeNow``1(``0,System.String)">
+            <summary>
+                序列化文件
+            </summary>
+            <typeparam name="T">序列化对象类型</typeparam>
+            <param name="obj">序列化对象</param>
+            <param name="file">序列化文件</param>
+        </member>
+        <member name="M:CommonHelper.Serialize.DeSerializeNow``1(System.String,``0@)">
+            <summary>
+                反序列化
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="file">反序列化文件</param>
+            <param name="obj">反序列化对象</param>
+        </member>
+    </members>
+</doc>

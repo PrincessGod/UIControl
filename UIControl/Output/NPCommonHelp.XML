@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NPCommonHelp</name>
+    </assembly>
+    <members>
+        <member name="T:NPCommonHelp.MVVM.BindableBase">
+            <summary>
+                Implementation of <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> to simplify models.
+            </summary>
+        </member>
+        <member name="E:NPCommonHelp.MVVM.BindableBase.PropertyChanged">
+            <summary>
+                Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.BindableBase.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+                Checks if a property already matches a desired value. Sets the property and
+                notifies listeners only when necessary.
+            </summary>
+            <typeparam name="T">Type of the property.</typeparam>
+            <param name="storage">Reference to a property with both getter and setter.</param>
+            <param name="value">Desired value for the property.</param>
+            <param name="propertyName">
+                Name of the property used to notify listeners. This
+                value is optional and can be provided automatically when invoked from compilers that
+                support CallerMemberName.
+            </param>
+            <returns>
+                True if the value was changed, false if the existing value matched the
+                desired value.
+            </returns>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.BindableBase.SetProperty``1(``0@,``0,System.Action,System.String)">
+            <summary>
+                Checks if a property already matches a desired value. Sets the property and
+                notifies listeners only when necessary.
+            </summary>
+            <typeparam name="T">Type of the property.</typeparam>
+            <param name="storage">Reference to a property with both getter and setter.</param>
+            <param name="value">Desired value for the property.</param>
+            <param name="propertyName">
+                Name of the property used to notify listeners. This
+                value is optional and can be provided automatically when invoked from compilers that
+                support CallerMemberName.
+            </param>
+            <param name="onChanged">Action that is called after the property value has been changed.</param>
+            <returns>
+                True if the value was changed, false if the existing value matched the
+                desired value.
+            </returns>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.BindableBase.RaisePropertyChanged(System.String)">
+            <summary>
+                Raises this object's PropertyChanged event.
+            </summary>
+            <param name="propertyName">
+                Name of the property used to notify listeners. This
+                value is optional and can be provided automatically when invoked from compilers
+                that support <see cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" />.
+            </param>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.BindableBase.OnPropertyChanged(System.String)">
+            <summary>
+                Notifies listeners that a property value has changed.
+            </summary>
+            <param name="propertyName">
+                Name of the property used to notify listeners. This
+                value is optional and can be provided automatically when invoked from compilers
+                that support <see cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" />.
+            </param>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.BindableBase.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+                Raises this object's PropertyChanged event.
+            </summary>
+            <param name="args">The PropertyChangedEventArgs</param>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.BindableBase.OnPropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+                Raises this object's PropertyChanged event.
+            </summary>
+            <typeparam name="T">The type of the property that has a new value</typeparam>
+            <param name="propertyExpression">A Lambda expression representing the property that has a new value.</param>
+        </member>
+        <member name="T:NPCommonHelp.MVVM.DelegateCommand">
+            <summary>
+                An <see cref="T:System.Windows.Input.ICommand" /> whose delegates do not take any parameters for <see cref="M:NPCommonHelp.MVVM.DelegateCommand.Execute" /> and
+                <see cref="M:NPCommonHelp.MVVM.DelegateCommand.CanExecute" />.
+            </summary>
+            <see cref="T:NPCommonHelp.MVVM.DelegateCommandBase" />
+            <see cref="T:NPCommonHelp.MVVM.DelegateCommand`1" />
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand.#ctor(System.Action)">
+            <summary>
+                Creates a new instance of <see cref="T:NPCommonHelp.MVVM.DelegateCommand" /> with the <see cref="T:System.Action" /> to invoke on execution.
+            </summary>
+            <param name="executeMethod">The <see cref="T:System.Action" /> to invoke when <see cref="M:System.Windows.Input.ICommand.Execute(System.Object)" /> is called.</param>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+                Creates a new instance of <see cref="T:NPCommonHelp.MVVM.DelegateCommand" /> with the <see cref="T:System.Action" /> to invoke on execution
+                and a <see langword="Func" /> to query for determining if the command can execute.
+            </summary>
+            <param name="executeMethod">The <see cref="T:System.Action" /> to invoke when <see cref="M:System.Windows.Input.ICommand.Execute(System.Object)" /> is called.</param>
+            <param name="canExecuteMethod">
+                The <see cref="T:System.Func`1" /> to invoke when <see cref="M:System.Windows.Input.ICommand.CanExecute(System.Object)" /> is
+                called
+            </param>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand.Execute">
+            <summary>
+                Executes the command.
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand.CanExecute">
+            <summary>
+                Determines if the command can be executed.
+            </summary>
+            <returns>Returns <see langword="true" /> if the command can execute,otherwise returns <see langword="false" />.</returns>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand.ObservesProperty``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+                Observes a property that implements INotifyPropertyChanged, and automatically calls
+                DelegateCommandBase.RaiseCanExecuteChanged on property changed notifications.
+            </summary>
+            <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+            <param name="propertyExpression">The property expression. Example: ObservesProperty(() => PropertyName).</param>
+            <returns>The current instance of DelegateCommand</returns>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand.ObservesCanExecute(System.Linq.Expressions.Expression{System.Func{System.Boolean}})">
+            <summary>
+                Observes a property that is used to determine if this command can execute, and if it implements
+                INotifyPropertyChanged it will automatically call DelegateCommandBase.RaiseCanExecuteChanged on property changed
+                notifications.
+            </summary>
+            <param name="canExecuteExpression">The property expression. Example: ObservesCanExecute(() => PropertyName).</param>
+            <returns>The current instance of DelegateCommand</returns>
+        </member>
+        <member name="T:NPCommonHelp.MVVM.DelegateCommandBase">
+            <summary>
+                An <see cref="T:System.Windows.Input.ICommand" /> whose delegates can be attached for <see cref="M:NPCommonHelp.MVVM.DelegateCommandBase.Execute(System.Object)" /> and <see cref="M:NPCommonHelp.MVVM.DelegateCommandBase.CanExecute(System.Object)" />
+                .
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommandBase.#ctor">
+            <summary>
+                Creates a new instance of a <see cref="T:NPCommonHelp.MVVM.DelegateCommandBase" />, specifying both the execute action and the can
+                execute function.
+            </summary>
+            <param name="executeMethod">The <see cref="T:System.Action" /> to execute when <see cref="M:System.Windows.Input.ICommand.Execute(System.Object)" /> is invoked.</param>
+            <param name="canExecuteMethod">
+                The <see cref="T:System.Func`2" /> to invoked when <see cref="M:System.Windows.Input.ICommand.CanExecute(System.Object)" />
+                is invoked.
+            </param>
+        </member>
+        <member name="E:NPCommonHelp.MVVM.DelegateCommandBase.CanExecuteChanged">
+            <summary>
+                Occurs when changes occur that affect whether or not the command should execute.
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommandBase.OnCanExecuteChanged">
+            <summary>
+                Raises <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged" /> so every
+                command invoker can requery <see cref="M:System.Windows.Input.ICommand.CanExecute(System.Object)" />.
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommandBase.RaiseCanExecuteChanged">
+            <summary>
+                Raises <see cref="E:NPCommonHelp.MVVM.DelegateCommandBase.CanExecuteChanged" /> so every command invoker
+                can requery to check if the command can execute.
+                <remarks>
+                    Note that this will trigger the execution of <see cref="!:DelegateCommandBase.InvokeCanExecute" /> once for
+                    each invoker.
+                </remarks>
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommandBase.ObservesPropertyInternal``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+                Observes a property that implements INotifyPropertyChanged, and automatically calls
+                DelegateCommandBase.RaiseCanExecuteChanged on property changed notifications.
+            </summary>
+            <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+            <param name="propertyExpression">The property expression. Example: ObservesProperty(() => PropertyName).</param>
+        </member>
+        <member name="P:NPCommonHelp.MVVM.DelegateCommandBase.IsActive">
+            <summary>
+                Gets or sets a value indicating whether the object is active.
+            </summary>
+            <value><see langword="true" /> if the object is active; otherwise <see langword="false" />.</value>
+        </member>
+        <member name="E:NPCommonHelp.MVVM.DelegateCommandBase.IsActiveChanged">
+            <summary>
+                Fired if the <see cref="P:NPCommonHelp.MVVM.DelegateCommandBase.IsActive" /> property changes.
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommandBase.OnIsActiveChanged">
+            <summary>
+                This raises the <see cref="E:NPCommonHelp.MVVM.DelegateCommandBase.IsActiveChanged" /> event.
+            </summary>
+        </member>
+        <member name="T:NPCommonHelp.MVVM.DelegateCommand`1">
+            <summary>
+                An <see cref="T:System.Windows.Input.ICommand" /> whose delegates can be attached for <see cref="M:NPCommonHelp.MVVM.DelegateCommand`1.Execute(`0)" /> and <see cref="M:NPCommonHelp.MVVM.DelegateCommand`1.CanExecute(`0)" />
+                .
+            </summary>
+            <typeparam name="T">Parameter type.</typeparam>
+            <remarks>
+                The constructor deliberately prevents the use of value types.
+                Because ICommand takes an object, having a value type for T would cause unexpected behavior when CanExecute(null)
+                is called during XAML initialization for command bindings.
+                Using default(T) was considered and rejected as a solution because the implementor would not be able to distinguish
+                between a valid and defaulted values.
+                <para />
+                Instead, callers should support a value type by using a nullable value type and checking the HasValue property
+                before using the Value property.
+                <example>
+                    <code>
+            public MyClass()
+            {
+                this.submitCommand = new DelegateCommand&lt;int?&gt;(this.Submit, this.CanSubmit);
+            }
+            
+            private bool CanSubmit(int? customerId)
+            {
+                return (customerId.HasValue &amp;&amp; customers.Contains(customerId.Value));
+            }
+                </code>
+                </example>
+            </remarks>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand`1.#ctor(System.Action{`0})">
+            <summary>
+                Initializes a new instance of <see cref="T:NPCommonHelp.MVVM.DelegateCommand`1" />.
+            </summary>
+            <param name="executeMethod">
+                Delegate to execute when Execute is called on the command. This can be null to just hook up
+                a CanExecute delegate.
+            </param>
+            <remarks><see cref="M:NPCommonHelp.MVVM.DelegateCommand`1.CanExecute(`0)" /> will always return true.</remarks>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand`1.#ctor(System.Action{`0},System.Func{`0,System.Boolean})">
+            <summary>
+                Initializes a new instance of <see cref="T:NPCommonHelp.MVVM.DelegateCommand`1" />.
+            </summary>
+            <param name="executeMethod">
+                Delegate to execute when Execute is called on the command. This can be null to just hook up
+                a CanExecute delegate.
+            </param>
+            <param name="canExecuteMethod">Delegate to execute when CanExecute is called on the command. This can be null.</param>
+            <exception cref="T:System.ArgumentNullException">
+                When both <paramref name="executeMethod" /> and
+                <paramref name="canExecuteMethod" /> ar <see langword="null" />.
+            </exception>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand`1.Execute(`0)">
+            <summary>
+                Executes the command and invokes the <see cref="T:System.Action`1" /> provided during construction.
+            </summary>
+            <param name="parameter">Data used by the command.</param>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand`1.CanExecute(`0)">
+            <summary>
+                Determines if the command can execute by invoked the <see cref="T:System.Func`2" /> provided during construction.
+            </summary>
+            <param name="parameter">Data used by the command to determine if it can execute.</param>
+            <returns>
+                <see langword="true" /> if this command can be executed; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand`1.ObservesProperty``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+                Observes a property that implements INotifyPropertyChanged, and automatically calls
+                DelegateCommandBase.RaiseCanExecuteChanged on property changed notifications.
+            </summary>
+            <typeparam name="TType">The type of the return value of the method that this delegate encapulates</typeparam>
+            <param name="propertyExpression">The property expression. Example: ObservesProperty(() => PropertyName).</param>
+            <returns>The current instance of DelegateCommand</returns>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.DelegateCommand`1.ObservesCanExecute(System.Linq.Expressions.Expression{System.Func{System.Boolean}})">
+            <summary>
+                Observes a property that is used to determine if this command can execute, and if it implements
+                INotifyPropertyChanged it will automatically call DelegateCommandBase.RaiseCanExecuteChanged on property changed
+                notifications.
+            </summary>
+            <param name="canExecuteExpression">The property expression. Example: ObservesCanExecute(() => PropertyName).</param>
+            <returns>The current instance of DelegateCommand</returns>
+        </member>
+        <member name="T:NPCommonHelp.MVVM.IActiveAware">
+            <summary>
+                Interface that defines if the object instance is active
+                and notifies when the activity changes.
+            </summary>
+        </member>
+        <member name="P:NPCommonHelp.MVVM.IActiveAware.IsActive">
+            <summary>
+                Gets or sets a value indicating whether the object is active.
+            </summary>
+            <value><see langword="true" /> if the object is active; otherwise <see langword="false" />.</value>
+        </member>
+        <member name="E:NPCommonHelp.MVVM.IActiveAware.IsActiveChanged">
+            <summary>
+                Notifies that the value for <see cref="P:NPCommonHelp.MVVM.IActiveAware.IsActive" /> property has changed.
+            </summary>
+        </member>
+        <member name="T:NPCommonHelp.MVVM.PropertySupport">
+            <summary>
+             Provides support for extracting property information based on a property expression.
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.PropertySupport.ExtractPropertyName``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Extracts the property name from a property expression.
+            </summary>
+            <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+            <param name="propertyExpression">The property expression (e.g. p => p.PropertyName)</param>
+            <returns>The name of the property.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the <paramref name="propertyExpression"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the expression is:<br/>
+                Not a <see cref="T:System.Linq.Expressions.MemberExpression"/><br/>
+                The <see cref="T:System.Linq.Expressions.MemberExpression"/> does not represent a property.<br/>
+                Or, the property is static.
+            </exception>
+        </member>
+        <member name="M:NPCommonHelp.MVVM.PropertySupport.ExtractPropertyNameFromLambda(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Extracts the property name from a LambdaExpression.
+            </summary>
+            <param name="expression">The LambdaExpression</param>
+            <returns>The name of the property.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the <paramref name="expression"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the expression is:<br/>
+                The <see cref="T:System.Linq.Expressions.MemberExpression"/> does not represent a property.<br/>
+                Or, the property is static.
+            </exception>
+        </member>
+        <member name="T:NPCommonHelp.Xml.Serialize">
+            <summary>
+                序列化文件辅助类
+            </summary>
+        </member>
+        <member name="M:NPCommonHelp.Xml.Serialize.SerializeNow``1(``0,System.String)">
+            <summary>
+                序列化文件
+            </summary>
+            <typeparam name="T">序列化对象类型</typeparam>
+            <param name="obj">序列化对象</param>
+            <param name="file">序列化文件</param>
+        </member>
+        <member name="M:NPCommonHelp.Xml.Serialize.DeSerializeNow``1(System.String,``0@)">
+            <summary>
+                反序列化
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="file">反序列化文件</param>
+            <param name="obj">反序列化对象</param>
+        </member>
+    </members>
+</doc>
