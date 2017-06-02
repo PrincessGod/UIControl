@@ -28,16 +28,17 @@
                                     PanelMaxHeight="400" PanelMinHeight="100" PanelMaxWidth="400" PanelMinWidth="100" />
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="ButtonBase_OnClick">随机生成</Button>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 40" Click="ButtonBase1_OnClick">清除</Button>
-        <CheckBox x:Name="CheckBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 70" IsChecked="True">开启动画</CheckBox>
-        <CheckBox x:Name="CheckBox1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 90"
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 70 10 0" Click="ButtonBase2_OnClick">添加超链接</Button>
+        <CheckBox x:Name="CheckBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 90 10 0" IsChecked="True">开启动画</CheckBox>
+        <CheckBox x:Name="CheckBox1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 110 10 0"
                   IsChecked="True">
             随机颜色
         </CheckBox>
-        <CheckBox x:Name="CheckBox2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 110"
+        <CheckBox x:Name="CheckBox2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 130 10 0"
                   IsChecked="True">
             随机字号
         </CheckBox>
-        <CheckBox x:Name="CheckBox3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 130"
+        <CheckBox x:Name="CheckBox3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10 150 10 0"
                   IsChecked="True">
             隐藏修饰
         </CheckBox>

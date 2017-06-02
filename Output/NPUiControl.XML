@@ -293,28 +293,39 @@
                 路由事件消息增加
             </summary>
         </member>
-        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String)">
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Boolean)">
             <summary>
                 添加消息
             </summary>
             <param name="message">消息内容</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
         </member>
-        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color)">
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Double,System.Boolean)">
+            <summary>
+                添加消息
+            </summary>
+            <param name="message">消息内容</param>
+            <param name="fontSize">字号</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color,System.Boolean)">
             <summary>
                 添加消息
             </summary>
             <param name="message">消息内容</param>
             <param name="color">文字颜色</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
         </member>
-        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color,System.Double)">
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color,System.Double,System.Boolean)">
             <summary>
                 添加消息
             </summary>
             <param name="message">消息内容</param>
             <param name="color">文字颜色</param>
             <param name="fontSize">字体大小</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
         </member>
-        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color,System.Double,System.Windows.Media.FontFamily)">
+        <member name="M:NPUiControl.FlowMessageBox.AddMessage(System.String,System.Windows.Media.Color,System.Double,System.Windows.Media.FontFamily,System.Boolean)">
             <summary>
                 添加消息
             </summary>
@@ -322,6 +333,54 @@
             <param name="color">文字颜色</param>
             <param name="fontSize">字体大小</param>
             <param name="fontFamily">字体</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddHyperLink(System.String,System.Double,System.Windows.RoutedEventHandler,System.Boolean)">
+            <summary>
+                添加链接
+            </summary>
+            <param name="message">链接内容</param>
+            <param name="fontSize">字号</param>
+            <param name="clickEventHandler">点击事件</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddHyperLink(System.String,System.Windows.RoutedEventHandler,System.Boolean)">
+            <summary>
+                添加链接
+            </summary>
+            <param name="message">链接内容</param>
+            <param name="clickEventHandler">点击事件</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddHyperLink(System.String,System.Windows.Media.Color,System.Windows.RoutedEventHandler,System.Boolean)">
+            <summary>
+                添加链接
+            </summary>
+            <param name="message">链接内容</param>
+            <param name="color">链接颜色</param>
+            <param name="clickEventHandler">点击事件</param>
+            <param name="isNeedLineBreak">是都需要换行</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddHyperLink(System.String,System.Windows.Media.Color,System.Double,System.Windows.RoutedEventHandler,System.Boolean)">
+            <summary>
+                添加链接
+            </summary>
+            <param name="message">链接内容</param>
+            <param name="color">链接颜色</param>
+            <param name="fontSize">字号</param>
+            <param name="clickEventHandler">点击事件</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
+        </member>
+        <member name="M:NPUiControl.FlowMessageBox.AddHyperLink(System.String,System.Windows.Media.Color,System.Double,System.Windows.Media.FontFamily,System.Windows.RoutedEventHandler,System.Boolean)">
+            <summary>
+                添加链接
+            </summary>
+            <param name="message">链接信息</param>
+            <param name="color">链接颜色</param>
+            <param name="fontSize">字号</param>
+            <param name="fontFamily">字体</param>
+            <param name="clickEventHandler">点击事件</param>
+            <param name="isNeedLineBreak">是否需要换行</param>
         </member>
         <member name="M:NPUiControl.FlowMessageBox.ClearMessage">
             <summary>

@@ -44,5 +44,15 @@ namespace UIControl
         {
             FlowMessageBox1.ClearMessage();
         }
+
+        private void ButtonBase2_OnClick(object sender, RoutedEventArgs e)
+        {
+            FlowMessageBox1.AddHyperLink("Add to last", ClickE, false);
+        }
+
+        private void ClickE(object sender, RoutedEventArgs e)
+        {
+            FlowMessageBox1.AddMessage("Add at last", false);
+        }
     }
 }

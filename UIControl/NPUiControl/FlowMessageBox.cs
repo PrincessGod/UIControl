@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -361,12 +362,12 @@ namespace NPUiControl
         /// <summary>
         ///     FlowDocument对象
         /// </summary>
-        public FlowDocument Document { get; private set; }
+        public FlowDocument Document { get; }
 
         /// <summary>
         ///     Paragraph对象
         /// </summary>
-        public Paragraph Paragraph { get; private set; }
+        public Paragraph Paragraph { get; }
 
         /// <summary>
         ///     上一个文字画刷
@@ -414,12 +415,27 @@ namespace NPUiControl
         ///     添加消息
         /// </summary>
         /// <param name="message">消息内容</param>
-        public void AddMessage(string message)
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddMessage(string message, bool isNeedLineBreak = true)
         {
             if (Foreground is SolidColorBrush)
-                AddMessage(message, ((SolidColorBrush) Foreground).Color);
+                AddMessage(message, ((SolidColorBrush) Foreground).Color, isNeedLineBreak);
             else
-                AddMessage(message, Colors.Black);
+                AddMessage(message, Colors.Black, isNeedLineBreak);
+        }
+
+        /// <summary>
+        ///     添加消息
+        /// </summary>
+        /// <param name="message">消息内容</param>
+        /// <param name="fontSize">字号</param>
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddMessage(string message, double fontSize, bool isNeedLineBreak = true)
+        {
+            if (Foreground is SolidColorBrush)
+                AddMessage(message, ((SolidColorBrush) Foreground).Color, isNeedLineBreak);
+            else
+                AddMessage(message, Colors.Black, fontSize, isNeedLineBreak);
         }
 
         /// <summary>
@@ -427,9 +443,10 @@ namespace NPUiControl
         /// </summary>
         /// <param name="message">消息内容</param>
         /// <param name="color">文字颜色</param>
-        public void AddMessage(string message, Color color)
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddMessage(string message, Color color, bool isNeedLineBreak = true)
         {
-            AddMessage(message, color, FontSize);
+            AddMessage(message, color, FontSize, isNeedLineBreak);
         }
 
         /// <summary>
@@ -438,9 +455,10 @@ namespace NPUiControl
         /// <param name="message">消息内容</param>
         /// <param name="color">文字颜色</param>
         /// <param name="fontSize">字体大小</param>
-        public void AddMessage(string message, Color color, double fontSize)
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddMessage(string message, Color color, double fontSize, bool isNeedLineBreak = true)
         {
-            AddMessage(message, color, fontSize, FontFamily);
+            AddMessage(message, color, fontSize, FontFamily, isNeedLineBreak);
         }
 
         /// <summary>
@@ -450,34 +468,164 @@ namespace NPUiControl
         /// <param name="color">文字颜色</param>
         /// <param name="fontSize">字体大小</param>
         /// <param name="fontFamily">字体</param>
-        public void AddMessage(string message, Color color, double fontSize, FontFamily fontFamily)
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddMessage(string message, Color color, double fontSize, FontFamily fontFamily,
+            bool isNeedLineBreak = true)
         {
-            string lastMessage = null;
+            string lastMessage;
+            var run = CreateRun(out lastMessage, message, color, fontSize, fontFamily, isNeedLineBreak);
+            var newMessage = isNeedLineBreak ? message : lastMessage + message;
+
+            Paragraph.Inlines.Add(run);
+            ScrollViewer.ScrollToEnd();
+            ExcuteAnimation(run);
+            RaiseEvent(newMessage, lastMessage);
+        }
+
+        /// <summary>
+        ///     添加链接
+        /// </summary>
+        /// <param name="message">链接内容</param>
+        /// <param name="fontSize">字号</param>
+        /// <param name="clickEventHandler">点击事件</param>
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddHyperLink(string message, double fontSize, RoutedEventHandler clickEventHandler,
+            bool isNeedLineBreak = true)
+        {
+            AddHyperLink(message, Colors.DodgerBlue, fontSize, clickEventHandler, isNeedLineBreak);
+        }
+
+        /// <summary>
+        ///     添加链接
+        /// </summary>
+        /// <param name="message">链接内容</param>
+        /// <param name="clickEventHandler">点击事件</param>
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddHyperLink(string message, RoutedEventHandler clickEventHandler,
+            bool isNeedLineBreak = true)
+        {
+            AddHyperLink(message, Colors.DodgerBlue, clickEventHandler, isNeedLineBreak);
+        }
+
+        /// <summary>
+        ///     添加链接
+        /// </summary>
+        /// <param name="message">链接内容</param>
+        /// <param name="color">链接颜色</param>
+        /// <param name="clickEventHandler">点击事件</param>
+        /// <param name="isNeedLineBreak">是都需要换行</param>
+        public void AddHyperLink(string message, Color color, RoutedEventHandler clickEventHandler,
+            bool isNeedLineBreak = true)
+        {
+            AddHyperLink(message, color, FontSize, clickEventHandler, isNeedLineBreak);
+        }
+
+        /// <summary>
+        ///     添加链接
+        /// </summary>
+        /// <param name="message">链接内容</param>
+        /// <param name="color">链接颜色</param>
+        /// <param name="fontSize">字号</param>
+        /// <param name="clickEventHandler">点击事件</param>
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddHyperLink(string message, Color color, double fontSize, RoutedEventHandler clickEventHandler,
+            bool isNeedLineBreak = true)
+        {
+            AddHyperLink(message, color, fontSize, FontFamily, clickEventHandler, isNeedLineBreak);
+        }
+
+        /// <summary>
+        ///     添加链接
+        /// </summary>
+        /// <param name="message">链接信息</param>
+        /// <param name="color">链接颜色</param>
+        /// <param name="fontSize">字号</param>
+        /// <param name="fontFamily">字体</param>
+        /// <param name="clickEventHandler">点击事件</param>
+        /// <param name="isNeedLineBreak">是否需要换行</param>
+        public void AddHyperLink(string message, Color color, double fontSize, FontFamily fontFamily,
+            RoutedEventHandler clickEventHandler,
+            bool isNeedLineBreak = true)
+        {
+            string lastMessage;
+            var run = CreateRun(out lastMessage, message, null, fontSize, fontFamily, isNeedLineBreak);
+            var hyper = new Hyperlink(run);
+            hyper.Click += clickEventHandler;
+            var newMessage = isNeedLineBreak ? message : lastMessage + message;
+
+            var hyperStyle = new Style(typeof(Hyperlink), hyper.Style);
+            var hoverTrigger = new Trigger
+            {
+                Property = IsMouseOverProperty,
+                Value = true,
+                Setters = {new Setter(ForegroundProperty, new SolidColorBrush(Colors.Red))}
+            };
+            hyperStyle.Triggers.Add(hoverTrigger);
+            hyperStyle.Setters.Add(new Setter(ForegroundProperty, new SolidColorBrush(color)));
+            hyper.Style = hyperStyle;
+
+            Paragraph.Inlines.Add(hyper);
+            ScrollViewer.ScrollToEnd();
+            RaiseEvent(newMessage, lastMessage);
+        }
+
+        private Run CreateRun(out string lastMessage, string message, Color? color, double fontSize,
+            FontFamily fontFamily,
+            bool isNeedLineBreak)
+        {
+            lastMessage = null;
             if (Paragraph.Inlines.Count != 0)
             {
-                lastMessage = ((Run) Paragraph.Inlines.LastInline).Text;
-                Paragraph.Inlines.Add(new LineBreak());
+                if (Paragraph.Inlines.OfType<LineBreak>().Any())
+                {
+                    var pointer = Paragraph.Inlines.OfType<LineBreak>().Last().ElementStart;
+                    lastMessage = GetTextInContext(pointer);
+                }
+                else
+                {
+                    var pointer = Paragraph.ContentStart;
+                    lastMessage = GetTextInContext(pointer);
+                }
+
+                if (isNeedLineBreak)
+                    Paragraph.Inlines.Add(new LineBreak());
             }
 
             var run = new Run(message);
-            if (!IsAnimationEnable)
+
+            if (color != null)
             {
-                if (LastBrush == null || LastColor != color)
+                var colort = (Color) color;
+                if (!IsAnimationEnable)
                 {
-                    LastBrush = new SolidColorBrush(color);
-                    LastColor = color;
+                    if (LastBrush == null || LastColor != colort)
+                    {
+                        LastBrush = new SolidColorBrush(colort);
+                        LastColor = colort;
+                    }
+                    run.Foreground = LastBrush;
                 }
-                run.Foreground = LastBrush;
+                else
+                {
+                    run.Foreground = new SolidColorBrush(colort);
+                }
             }
-            else
-            {
-                run.Foreground = new SolidColorBrush(color);
-            }
+
             run.FontSize = fontSize;
             run.FontFamily = fontFamily;
-            Paragraph.Inlines.Add(run);
-            ScrollViewer.ScrollToEnd();
+            return run;
+        }
 
+        private void RaiseEvent(string message, string lastMessage)
+        {
+            var args =
+                new RoutedPropertyChangedEventArgs<string>(lastMessage, message);
+            args.RoutedEvent = MessageAddEvent;
+            RaiseEvent(args);
+        }
+
+        private void ExcuteAnimation(TextElement run)
+        {
             if (IsAnimationEnable)
             {
                 var brush = run.Foreground;
@@ -487,16 +635,28 @@ namespace NPUiControl
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, fontColorAnimation);
 
                 var fontSizeAnimation = new DoubleAnimation();
-                fontSizeAnimation.From = fontSize + AccentFontSizeRatio;
+                fontSizeAnimation.From = run.FontSize + AccentFontSizeRatio;
                 fontSizeAnimation.Duration = TimeSpan.FromSeconds(.5);
-                fontSizeAnimation.EasingFunction = new SineEase(){EasingMode = EasingMode.EaseOut};            
+                fontSizeAnimation.EasingFunction = new SineEase {EasingMode = EasingMode.EaseOut};
                 run.BeginAnimation(TextElement.FontSizeProperty, fontSizeAnimation);
             }
+        }
 
-            var args =
-                new RoutedPropertyChangedEventArgs<string>(lastMessage, message);
-            args.RoutedEvent = MessageAddEvent;
-            RaiseEvent(args);
+        private string GetTextInContext(TextPointer position)
+        {
+            var text = "";
+            while (position != null)
+            {
+                if (position.GetPointerContext(LogicalDirection.Backward) == TextPointerContext.ElementStart)
+                {
+                    if (position.Parent is Run)
+                        text += position.GetTextInRun(LogicalDirection.Forward);
+                }
+
+                position = position.GetNextContextPosition(LogicalDirection.Forward);
+            }
+
+            return text;
         }
 
         /// <summary>
