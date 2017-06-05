@@ -24,6 +24,16 @@ namespace NPUiControl
     public class FlowMessageBox : Control
     {
         /// <summary>
+        ///     消息框底边距属性 底边距属性优先级高于顶边距 最好设置最小宽高<see cref="PanelMinHeight" /><see cref="PanelMinHeight" />
+        /// </summary>
+        public static readonly DependencyProperty CanvasBottomProperty;
+
+        /// <summary>
+        ///     消息框右边距属性 右边距属性优先级高于左边距 最好设置最小宽高<see cref="PanelMinHeight" /><see cref="PanelMinHeight" />
+        /// </summary>
+        public static readonly DependencyProperty CanvasRightProperty;
+
+        /// <summary>
         ///     标题属性
         /// </summary>
         public static readonly DependencyProperty TitleProperty;
@@ -160,6 +170,10 @@ namespace NPUiControl
                 "PanelMinHeight", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
             PanelMinWidthProperty = DependencyProperty.Register(
                 "PanelMinWidth", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
+            CanvasBottomProperty = DependencyProperty.Register(
+                "CanvasBottom", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
+            CanvasRightProperty = DependencyProperty.Register(
+                "CanvasRight", typeof(double), typeof(FlowMessageBox), new PropertyMetadata(double.NaN));
 
             MessageAddEvent = EventManager.RegisterRoutedEvent("MessageAdded", RoutingStrategy.Bubble,
                 typeof(RoutedPropertyChangedEventHandler<string>), typeof(FlowMessageBox));
@@ -173,6 +187,24 @@ namespace NPUiControl
             Paragraph = new Paragraph();
             Document = new FlowDocument(Paragraph);
             Document.PagePadding = new Thickness(0, 0, 0, 0);
+        }
+
+        /// <summary>
+        ///     消息框右边距
+        /// </summary>
+        public double CanvasRight
+        {
+            get { return (double) GetValue(CanvasRightProperty); }
+            set { SetValue(CanvasRightProperty, value); }
+        }
+
+        /// <summary>
+        ///     消息框底边距
+        /// </summary>
+        public double CanvasBottom
+        {
+            get { return (double) GetValue(CanvasBottomProperty); }
+            set { SetValue(CanvasBottomProperty, value); }
         }
 
         /// <summary>
@@ -381,25 +413,69 @@ namespace NPUiControl
 
         private void FlowMessageBox_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            CanvasLeft = PanelMargin.Left;
-            CanvasTop = PanelMargin.Top;
+            //If set PanelMargin , then use it to rerender size when size changed, eles use CanvaLeft、CanvasTop...
+            if (PanelMargin != new Thickness(-1, -1, -1, -1))
+            {
+                CanvasLeft = PanelMargin.Left;
+                CanvasTop = PanelMargin.Top;
 
-            var width = ActualWidth - PanelMargin.Left - PanelMargin.Right;
-            if (!double.IsNaN(PanelMinWidth))
-                width = width < PanelMinWidth ? PanelMinWidth : width;
-            if (!double.IsNaN(PanelMaxWidth))
-                width = width > PanelMaxWidth ? PanelMaxWidth : width;
-            width = width < 0 ? 0 : width;
+                var width = ActualWidth - PanelMargin.Left - PanelMargin.Right;
+                if (!double.IsNaN(PanelMinWidth))
+                    width = width < PanelMinWidth ? PanelMinWidth : width;
+                if (!double.IsNaN(PanelMaxWidth))
+                    width = width > PanelMaxWidth ? PanelMaxWidth : width;
+                width = width < 0 ? 0 : width;
 
-            var height = ActualHeight - PanelMargin.Top - PanelMargin.Bottom;
-            if (!double.IsNaN(PanelMinHeight))
-                height = height < PanelMinHeight ? PanelMinHeight : height;
-            if (!double.IsNaN(PanelMaxHeight))
-                height = height > PanelMaxHeight ? PanelMaxHeight : height;
-            height = height < 0 ? 0 : height;
+                var height = ActualHeight - PanelMargin.Top - PanelMargin.Bottom;
+                if (!double.IsNaN(PanelMinHeight))
+                    height = height < PanelMinHeight ? PanelMinHeight : height;
+                if (!double.IsNaN(PanelMaxHeight))
+                    height = height > PanelMaxHeight ? PanelMaxHeight : height;
+                height = height < 0 ? 0 : height;
 
-            PanelWidth = width;
-            PanelHeight = height;
+                PanelWidth = width;
+                PanelHeight = height;
+            }
+            else
+            {
+                //use Right
+                if (!double.IsNaN(CanvasRight))
+                    CanvasLeft = ActualWidth - PanelWidth - CanvasRight;
+                //use Bottom
+                if (!double.IsNaN(CanvasBottom))
+                    CanvasTop = ActualHeight - PanelHeight - CanvasBottom;
+
+                //use Top and Left
+                CanvasLeft = CanvasLeft >= ActualWidth
+                    ? double.IsNaN(CanvasRight)
+                        ? 0
+                        : ActualWidth - PanelWidth
+                    : CanvasLeft;
+                CanvasLeft = CanvasLeft < 0 ? 0 : CanvasLeft;
+                CanvasTop = CanvasTop >= ActualHeight
+                    ? double.IsNaN(CanvasBottom)
+                        ? 0
+                        : ActualHeight - PanelHeight
+                    : CanvasTop;
+                CanvasTop = CanvasTop < 0 ? 0 : CanvasTop;
+
+                var width = CanvasLeft + PanelWidth > ActualWidth ? ActualWidth - CanvasLeft : PanelWidth;
+                if (!double.IsNaN(PanelMinWidth))
+                    width = width < PanelMinWidth ? PanelMinWidth : width;
+                if (!double.IsNaN(PanelMaxWidth))
+                    width = width > PanelMaxWidth ? PanelMaxWidth : width;
+                width = width < 0 ? 0 : width;
+
+                var height = CanvasTop + PanelHeight > ActualHeight ? ActualHeight - CanvasTop : PanelHeight;
+                if (!double.IsNaN(PanelMinHeight))
+                    height = height < PanelMinHeight ? PanelMinHeight : height;
+                if (!double.IsNaN(PanelMaxHeight))
+                    height = height > PanelMaxHeight ? PanelMaxHeight : height;
+                height = height < 0 ? 0 : height;
+
+                PanelWidth = width;
+                PanelHeight = height;
+            }
         }
 
         /// <summary>
@@ -674,14 +750,12 @@ namespace NPUiControl
         {
             base.OnApplyTemplate();
 
-            if (PanelMargin != new Thickness(-1, -1, -1, -1))
+            var canvas = GetTemplateChild("PART_Canvas") as Panel;
+            if (canvas != null)
             {
-                var canvas = GetTemplateChild("PART_Canvas") as Panel;
-                if (canvas != null)
-                {
-                    SizeChanged += FlowMessageBox_SizeChanged;
-                }
+                SizeChanged += FlowMessageBox_SizeChanged;
             }
+
             FlowDocumentScrollViewer = GetTemplateChild("PART_FlowDocumentScrollViewer") as FlowDocumentScrollViewer;
             if (FlowDocumentScrollViewer != null)
             {
@@ -797,6 +871,9 @@ namespace NPUiControl
                 var xAdjust = _messageView.Width + e.GetPosition(null).X - _pos.X;
                 var yAdjust = _messageView.Height + e.GetPosition(null).Y - _pos.Y;
 
+                xAdjust = xAdjust > ActualWidth - CanvasLeft ? ActualWidth - CanvasLeft : xAdjust;
+                yAdjust = yAdjust > ActualHeight - CanvasTop ? ActualHeight - CanvasTop : yAdjust;
+
                 xAdjust = _messageView.ActualWidth + xAdjust > _messageView.MinWidth ? xAdjust : _messageView.MinWidth;
                 yAdjust = _messageView.ActualHeight + yAdjust > _messageView.MinHeight
                     ? yAdjust
@@ -804,9 +881,6 @@ namespace NPUiControl
 
                 xAdjust = xAdjust > _messageView.MaxWidth ? _messageView.MaxWidth : xAdjust;
                 yAdjust = yAdjust > _messageView.MaxHeight ? _messageView.MaxHeight : yAdjust;
-
-                xAdjust = xAdjust > ActualWidth ? ActualWidth : xAdjust;
-                yAdjust = yAdjust > ActualHeight ? ActualHeight : yAdjust;
 
                 xAdjust = xAdjust < 0 ? 0 : xAdjust;
                 yAdjust = yAdjust < 0 ? 0 : yAdjust;

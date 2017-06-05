@@ -24,8 +24,8 @@
                                     IsAutoHideTitleAndBorder="{Binding ElementName=CheckBox3, Path=IsChecked}"
                                     Padding="30 2 2 2" BorderBrush="AliceBlue" BorderThickness="2"
                                     IsAnimationEnable="{Binding ElementName=CheckBox, Path=IsChecked}"
-                                    Background="#2C0082F4" CanvasTop="20" CanvasLeft="30" PanelWidth="100"
-                                    PanelHeight="100">
+                                    Background="#2C0082F4" CanvasTop="20" CanvasLeft="30" CanvasBottom="10" CanvasRight="20" 
+                                    PanelWidth="200" PanelHeight="140" PanelMinHeight="50" PanelMinWidth="50">
             <npUiControl:FlowMessageBox.TitleStyle>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="ContentTemplate">

@@ -78,6 +78,16 @@
                 可用于动态消息提示
             </summary>
         </member>
+        <member name="F:NPUiControl.FlowMessageBox.CanvasBottomProperty">
+            <summary>
+                消息框底边距属性 底边距属性优先级高于顶边距 最好设置最小宽高<see cref="P:NPUiControl.FlowMessageBox.PanelMinHeight" /><see cref="P:NPUiControl.FlowMessageBox.PanelMinHeight" />
+            </summary>
+        </member>
+        <member name="F:NPUiControl.FlowMessageBox.CanvasRightProperty">
+            <summary>
+                消息框右边距属性 右边距属性优先级高于左边距 最好设置最小宽高<see cref="P:NPUiControl.FlowMessageBox.PanelMinHeight" /><see cref="P:NPUiControl.FlowMessageBox.PanelMinHeight" />
+            </summary>
+        </member>
         <member name="F:NPUiControl.FlowMessageBox.TitleProperty">
             <summary>
                 标题属性
@@ -171,6 +181,16 @@
         <member name="M:NPUiControl.FlowMessageBox.#ctor">
             <summary>
                 流式消息框
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.CanvasRight">
+            <summary>
+                消息框右边距
+            </summary>
+        </member>
+        <member name="P:NPUiControl.FlowMessageBox.CanvasBottom">
+            <summary>
+                消息框底边距
             </summary>
         </member>
         <member name="P:NPUiControl.FlowMessageBox.PanelMinWidth">
