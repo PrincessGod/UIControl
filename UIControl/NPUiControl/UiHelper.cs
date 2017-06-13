@@ -17,6 +17,48 @@ namespace NPUiControl
         private static bool IsBusy;
 
         /// <summary>
+        ///     找到符合条件的兄弟控件
+        /// </summary>
+        /// <typeparam name="T">控件类型</typeparam>
+        /// <param name="control">传入参数</param>
+        /// <param name="siblingName">寻找的控件名</param>
+        /// <returns>找到的控件对象</returns>
+        public static T FindSibling<T>(DependencyObject control, string siblingName)
+            where T : DependencyObject
+        {
+            if (control == null)
+                return null;
+
+            var parent = VisualTreeHelper.GetParent(control);
+
+            if (parent != null)
+            {
+                var childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+                for (var i = 0; i < childrenCount; i++)
+                {
+                    var child = VisualTreeHelper.GetChild(parent, i);
+                    // If the child is not of the request child type child
+                    var childType = child as T;
+                    if (childType != null)
+                    {
+                        if (!string.IsNullOrEmpty(siblingName))
+                        {
+                            var frameworkElement = child as FrameworkElement;
+                            // If the child's name is set for search
+                            if (frameworkElement != null && frameworkElement.Name == siblingName)
+                            {
+                                // if the child's name is of the request name
+                                return (T)child;
+                            }
+                        }
+                        return (T)child;
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         ///     Finds a Child of a given item in the visual tree.
         /// </summary>
         /// <param name="parent">A direct parent of the queried item.</param>

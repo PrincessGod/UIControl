@@ -394,12 +394,12 @@ namespace NPUiControl
         /// <summary>
         ///     FlowDocument对象
         /// </summary>
-        public FlowDocument Document { get; }
+        public FlowDocument Document { get; private set; }
 
         /// <summary>
         ///     Paragraph对象
         /// </summary>
-        public Paragraph Paragraph { get; }
+        public Paragraph Paragraph { get; private set; }
 
         /// <summary>
         ///     上一个文字画刷
@@ -553,7 +553,8 @@ namespace NPUiControl
             var newMessage = isNeedLineBreak ? message : lastMessage + message;
 
             Paragraph.Inlines.Add(run);
-            ScrollViewer.ScrollToEnd();
+            if(ScrollViewer!=null)
+                ScrollViewer.ScrollToEnd();
             ExcuteAnimation(run);
             RaiseEvent(newMessage, lastMessage);
         }
@@ -641,7 +642,8 @@ namespace NPUiControl
             hyper.Style = hyperStyle;
 
             Paragraph.Inlines.Add(hyper);
-            ScrollViewer.ScrollToEnd();
+            if(ScrollViewer!=null)
+                ScrollViewer.ScrollToEnd();
             RaiseEvent(newMessage, lastMessage);
         }
 
@@ -817,7 +819,8 @@ namespace NPUiControl
         {
             if (_isDragDropInEffect || _isResizeEffect)
                 return;
-            ScrollViewer.ScrollToEnd();
+            if(ScrollViewer!=null)
+                ScrollViewer.ScrollToEnd();
         }
 
         private void Drag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -911,7 +914,8 @@ namespace NPUiControl
                 _isResizeEffect = false;
                 if (ele != null)
                     ele.ReleaseMouseCapture();
-                ScrollViewer.ScrollToEnd();
+                if(ScrollViewer!=null)
+                    ScrollViewer.ScrollToEnd();
             }
         }
     }
