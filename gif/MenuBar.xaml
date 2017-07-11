@@ -1,0 +1,216 @@
+<!--ColorResources-->
+        <Color x:Key="MouseOverColor">#3F71ABAD</Color>
+        <Color x:Key="MouseFocusColor">#FBFDFC</Color>
+        <Color x:Key="ForegroundColor">#A4E1FE</Color>
+        <SolidColorBrush x:Key="MouseOverBrush" Color="{StaticResource MouseOverColor}" />
+        <SolidColorBrush x:Key="MouseFocusBrush" Color="{StaticResource MouseFocusColor}" />
+        <SolidColorBrush x:Key="ForegroindBrush" Color="{StaticResource ForegroundColor}" />
+
+        <!--RadiuButton-->
+        <Style TargetType="RadioButton">
+            <Setter Property="Foreground" Value="{StaticResource ForegroindBrush}" />
+            <Setter Property="Height">
+                <Setter.Value>
+                    <sys:Double>86</sys:Double>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Width">
+                <Setter.Value>
+                    <sys:Double>100</sys:Double>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid Name="GridB">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="Transparent" />
+                                </Grid.Background>
+                                <Image x:Name="image" Opacity="0" IsHitTestVisible="False" Source="../image/select.png"
+                                       Width="300" Height="86" Stretch="Fill" Margin="-100 0" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                      Content="{TemplateBinding Content}" />
+                                </StackPanel>
+                                <Rectangle Visibility="Collapsed" Name="RecButom" SnapsToDevicePixels="True" Height="0"
+                                           Fill="{StaticResource MouseFocusBrush}" VerticalAlignment="Bottom" />
+                            </Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="GridB">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                     Value="{StaticResource MouseOverColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState Name="Pressed" />
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.7">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="image"
+                                                             Storyboard.TargetProperty="Opacity" To="1"
+                                                             Duration="0:0:.5" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="image"
+                                                             Storyboard.TargetProperty="Opacity" To="0"
+                                                             Duration="0:0:1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                                <Setter TargetName="image" Property="Opacity" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource MouseFocusBrush}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--FlatButton-->
+        <Style x:Key="FlatToolButton" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource ForegroindBrush}" />
+            <Setter Property="Height">
+                <Setter.Value>
+                    <sys:Double>86</sys:Double>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Width">
+                <Setter.Value>
+                    <sys:Double>62</sys:Double>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid Name="GridB">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="Transparent" />
+                                </Grid.Background>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                  Content="{TemplateBinding Content}" />
+                                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="46" Height="46">
+                                    <Grid Width="21" Height="21" VerticalAlignment="Top" HorizontalAlignment="Right">
+                                        <Ellipse Fill="#FC3A34" />
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                   Foreground="#FEFEFE" Text="{TemplateBinding Tag}" />
+                                    </Grid>
+                                </Grid>
+
+                            </Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="GridB">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                     Value="{StaticResource MouseOverColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState Name="Pressed" />
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.7">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- FlatLogButton -->
+        <Style x:Key="FlatLoginButton" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource ForegroindBrush}" />
+            <Setter Property="Height">
+                <Setter.Value>
+                    <sys:Double>86</sys:Double>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid Name="GridB">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="Transparent" />
+                                </Grid.Background>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                  Content="{TemplateBinding Content}" />
+                            </Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="GridB">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                     Value="{StaticResource MouseOverColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState Name="Pressed" />
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.7">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--FIcon-->
+        <Style x:Key="FIcon" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/WuXiPipeGallery;component/image/fontimage/#iconfont" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
